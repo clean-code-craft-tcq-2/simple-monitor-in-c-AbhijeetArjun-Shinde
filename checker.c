@@ -1,10 +1,13 @@
 #include <stdio.h>
 #include <assert.h>
 
+void PrintOnConsole( const char *message){
+  printf(" %s is out of range!\n", message);
+}
 
 int TestBatteryTempIsOk(float temperature){
     if(temperature < 0 || temperature > 45) {
-      printf("Temperature out of range!\n");
+      PrintOnConsole(Temperature);
       return 0;
     }
   return 1;
@@ -12,7 +15,7 @@ int TestBatteryTempIsOk(float temperature){
 
 int TestBatterySocIsOk(float soc){
     if(soc < 20 || soc > 80) {
-      printf("State of Charge out of range!\n");
+      PrintOnConsole(State of Charge);
       return 0;
     }
   return 1;
@@ -20,7 +23,7 @@ int TestBatterySocIsOk(float soc){
 
 int TestBatteryChargeRateIsOk(float chargeRate){
     if(chargeRate > 0.8) {
-      printf("Charge Rate out of range!\n");
+      PrintOnConsole(Charge Rate);
       return 0;
     }
   return 1;
