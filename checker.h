@@ -6,7 +6,11 @@
 #define CHARGERATE_MAX_LIMIT 0.8
 
 
-
+typedef struct{
+  float Temperature;
+  float StateOfCharge;
+  float ChargeRate;
+} BatteryTestData;
 
 
 
@@ -18,4 +22,4 @@ int TestBatterySocIsOk(float soc);
 
 int TestBatteryChargeRateIsOk(float chargeRate);
 
-void AssertBatteryIsOk(float temperature, float soc, float chargeRate);
+void AssertBatteryIsOk(BatteryTestData testdata , int result);
