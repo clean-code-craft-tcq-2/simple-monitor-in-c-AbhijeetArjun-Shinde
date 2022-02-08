@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <assert.h>
+#include "checker.h"
 
-void PrintOnConsole( const char *message){
+void PrintOnConsole( char message[]){
   printf(" %s is out of range!\n", message);
 }
 
