@@ -40,10 +40,16 @@ void AssertBatteryIsOk(BatteryTestData testdata , int result) {
 
  
 int main() {
-  BatteryTestData testdata[2] = { 
+  BatteryTestData testdata[5] = { 
     { 20, 70, 0.7},
-    { 50, 85, 0}
+    { 50, 85, 0},
+    { -5, 50, 0.5},
+    { 20, 10, 2 },
+    { 35, 30, -4}
   };
   AssertBatteryIsOk(testdata[0],1);
   AssertBatteryIsOk(testdata[1],0);
+  AssertBatteryIsOk(testdata[2],0);
+  AssertBatteryIsOk(testdata[3],0);
+  AssertBatteryIsOk(testdata[4],0);
 }
