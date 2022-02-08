@@ -41,8 +41,8 @@ void AssertBatteryIsOk(BatteryTestData testdata , int result) {
  
 int main() {
   BatteryTestData testdata[8];
-  testdata[0] = {{ 20,70,0.7}};
-  testdata[1] = {{50,85,0}};
+  testdata[0] = { .Temperature=20,.StateOfCharge=70,.ChargeRate=0.7};
+  testdata[1] = {.Temperature=50,.StateOfCharge=85,.ChargeRate=0};
   AssertBatteryIsOk(testdata[0],1);
   AssertBatteryIsOk(testdata[1],0);
 }
