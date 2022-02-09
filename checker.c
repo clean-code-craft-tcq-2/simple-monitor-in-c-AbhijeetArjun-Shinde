@@ -14,12 +14,12 @@ int IsParameterInRange(float parameter, float minvalue , float maxvalue, char pa
   return 1;
 }
 
-int AssertBatteryIsOk(BatteryTestData testdata) {
+void AssertBatteryIsOk(BatteryTestData testdata, int expectedresult) {
   int output;
   output = IsParameterInRange(testdata.Temperature , TEMP_MIN_LIMIT , TEMP_MAX_LIMIT, "Temperature");
   output &= IsParameterInRange(testdata.StateOfCharge, SOC_MIN_LIMIT , SOC_MAX_LIMIT, "State of charge" );
   output &= IsParameterInRange(testdata.ChargeRate , CHARGERATE_MIN_LIMIT , CHARGERATE_MAX_LIMIT,"Charhe Rate");
-  return (output);
+  assert( output == expected result);
 }
 
  
@@ -31,9 +31,9 @@ int main() {
     { 20, 10, 2 },
     { 35, 30, -4}
   };
-  assert(AssertBatteryIsOk(testdata[0]));
-  assert(!AssertBatteryIsOk(testdata[1]));
-  assert(!AssertBatteryIsOk(testdata[2]));
-  assert(!AssertBatteryIsOk(testdata[3]));
-  assert(!AssertBatteryIsOk(testdata[4]));
+  AssertBatteryIsOk(testdata[0],1);
+  AssertBatteryIsOk(testdata[1],0);
+  AssertBatteryIsOk(testdata[2],0);
+  AssertBatteryIsOk(testdata[3],0);
+  AssertBatteryIsOk(testdata[4],0);
 }
