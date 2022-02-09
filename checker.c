@@ -8,7 +8,7 @@ void PrintOnConsole( char message[]){
 
 int IsParameterInRange(float parameter, float minvalue , float maxvalue, char parametername[]){
     if(parameter < minvalue || parameter > maxvalue) {
-      PrintOnConsole("parametername");
+      PrintOnConsole(parametername);
       return 0;
     }
   return 1;
