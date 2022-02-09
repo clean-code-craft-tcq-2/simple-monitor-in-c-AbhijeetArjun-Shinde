@@ -16,10 +16,6 @@ typedef struct{
 
 void PrintOnConsole( char message[]);
 
-int TestBatteryTempIsOk(float temperature);
+int IsParameterInRange(float parameter, float minvalue , float maxvalue , char parametername[]);
 
-int TestBatterySocIsOk(float soc);
-
-int TestBatteryChargeRateIsOk(float chargeRate);
-
-int AssertBatteryIsOk(BatteryTestData testdata , int result);
+int AssertBatteryIsOk(BatteryTestData testdata );
