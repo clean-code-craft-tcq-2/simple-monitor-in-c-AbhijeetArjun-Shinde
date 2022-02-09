@@ -6,8 +6,9 @@ void PrintOnConsole( char message[]){
   printf(" %s is out of range!\n", message);
 }
 
-int IsParameterInRange(float parameter, float minvalue , float maxvalue){
+int IsParameterInRange(float parameter, float minvalue , float maxvalue, char parametername[]){
     if(parameter < minvalue || parameter > maxvalue) {
+      PrintOnConsole("parametername");
       return 0;
     }
   return 1;
@@ -15,18 +16,9 @@ int IsParameterInRange(float parameter, float minvalue , float maxvalue){
 
 int AssertBatteryIsOk(BatteryTestData testdata) {
   int output;
-  output = IsParameterInRange(testdata.Temperature , TEMP_MIN_LIMIT , TEMP_MAX_LIMIT);
-  if(!output){
-    PrintOnConsole("Temperature");
-  }
-  output &= IsParameterInRange(testdata.StateOfCharge, SOC_MIN_LIMIT , SOC_MAX_LIMIT );
-  if(!output){
-    PrintOnConsole("State of Charge");
-  }
-  output &= IsParameterInRange(testdata.ChargeRate , CHARGERATE_MIN_LIMIT , CHARGERATE_MAX_LIMIT);
-   if(!output){
-    PrintOnConsole("Charge Rate");
-  }
+  output = IsParameterInRange(testdata.Temperature , TEMP_MIN_LIMIT , TEMP_MAX_LIMIT, "Temperature");
+  output &= IsParameterInRange(testdata.StateOfCharge, SOC_MIN_LIMIT , SOC_MAX_LIMIT, "State of charge" );
+  output &= IsParameterInRange(testdata.ChargeRate , CHARGERATE_MIN_LIMIT , CHARGERATE_MAX_LIMIT,"Charhe Rate");
   return (output);
 }
 
