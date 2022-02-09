@@ -22,4 +22,4 @@ int TestBatterySocIsOk(float soc);
 
 int TestBatteryChargeRateIsOk(float chargeRate);
 
-void AssertBatteryIsOk(BatteryTestData testdata , int result);
+int AssertBatteryIsOk(BatteryTestData testdata , int result);
