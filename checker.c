@@ -6,36 +6,28 @@ void PrintOnConsole( char message[]){
   printf(" %s is out of range!\n", message);
 }
 
-int TestBatteryTempIsOk(float temperature){
-    if(temperature < TEMP_MIN_LIMIT || temperature > TEMP_MAX_LIMIT) {
-      PrintOnConsole("Temperature");
+int IsParameterInRange(float parameter, float minvalue , float maxvalue){
+    if(parameter < minvalue || parameter > maxvalue) {
       return 0;
     }
   return 1;
 }
 
-int TestBatterySocIsOk(float soc){
-    if(soc < SOC_MIN_LIMIT || soc > SOC_MAX_LIMIT) {
-      PrintOnConsole("State of Charge");
-      return 0;
-    }
-  return 1;
-}
-
-int TestBatteryChargeRateIsOk(float chargeRate){
-    if(chargeRate < CHARGERATE_MIN_LIMIT || chargeRate > CHARGERATE_MAX_LIMIT) {
-      PrintOnConsole("Charge Rate");
-      return 0;
-    }
-  return 1;
-}
-
-void AssertBatteryIsOk(BatteryTestData testdata , int result) {
+int AssertBatteryIsOk(BatteryTestData testdata) {
   int output;
-  output =  TestBatteryTempIsOk(testdata.Temperature);
-  output &= TestBatterySocIsOk(testdata.StateOfCharge);
-  output &= TestBatteryChargeRateIsOk(testdata.ChargeRate);
-  assert( output == result);
+  output = IsParameterInRange(testdata.Temperature , TEMP_MIN_LIMIT , TEMP_MAX_LIMIT);
+  if(!output){
+    PrintOnConsole("Temperature");
+  }
+  output &= IsParameterInRange(testdata.StateOfCharge, SOC_MIN_LIMIT , SOC_MAX_LIMIT );
+  if(!output){
+    PrintOnConsole("State of Charge");
+  }
+  output &= IsParameterInRange(testdata.ChargeRate , CHARGERATE_MIN_LIMIT , CHARGERATE_MAX_LIMIT);
+   if(!output){
+    PrintOnConsole("Charge Rate");
+  }
+  return (output);
 }
 
  
@@ -47,9 +39,9 @@ int main() {
     { 20, 10, 2 },
     { 35, 30, -4}
   };
-  AssertBatteryIsOk(testdata[0],1);
-  AssertBatteryIsOk(testdata[1],0);
-  AssertBatteryIsOk(testdata[2],0);
-  AssertBatteryIsOk(testdata[3],0);
-  AssertBatteryIsOk(testdata[4],0);
+  assert(AssertBatteryIsOk(testdata[0]));
+  assert(!AssertBatteryIsOk(testdata[1]));
+  assert(!AssertBatteryIsOk(testdata[2]));
+  assert(!AssertBatteryIsOk(testdata[3]));
+  assert(!AssertBatteryIsOk(testdata[4]));
 }
