@@ -19,7 +19,7 @@ void AssertBatteryIsOk(BatteryTestData testdata, int expectedresult) {
   output = IsParameterInRange(testdata.Temperature , TEMP_MIN_LIMIT , TEMP_MAX_LIMIT, "Temperature");
   output &= IsParameterInRange(testdata.StateOfCharge, SOC_MIN_LIMIT , SOC_MAX_LIMIT, "State of charge" );
   output &= IsParameterInRange(testdata.ChargeRate , CHARGERATE_MIN_LIMIT , CHARGERATE_MAX_LIMIT,"Charhe Rate");
-  assert( output == expected result);
+  assert( output == expectedresult);
 }
 
  
