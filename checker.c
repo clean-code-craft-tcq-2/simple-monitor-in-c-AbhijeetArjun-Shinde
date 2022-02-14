@@ -32,15 +32,23 @@ int IsNormal(float parameter, float lowerlimit , float upperlimit){
       return 0;
     }
 
+float ConvertFarenheitToCelcius( float farenheit){
+    return ((farenheit - 32) * 5 / 9);
+}
 
 BatteryStatus CheckBatteryStatus(BatteryTestData testdata) {
+  float ConvertedTemperature = 0;
+  if(testdata.TemperatureUnit == 'c' || testdata.TemperatureUnit == 'C')
+    ConvertedTemperature = testdata.Temperature;
+  else
+    ConvertedTemperature = ConvertFarenheitToCelcius(testdata.Temperature);
 
   
-  B1.TemperatureStatus.LowBreach = IsThresholdBreached(testdata.Temperature , TemperatureRange.LowerThreshold , TemperatureRange.UpperThreshold );
-  B1.TemperatureStatus.LowWarning = IsInWarningLevel(testdata.Temperature ,TemperatureRange.LowerThreshold, TemperatureRange.LowerWarningLimit);
-  B1.TemperatureStatus.normal = IsNormal(testdata.Temperature ,TemperatureRange.LowerWarningLimit, TemperatureRange.UpperWarningLimit)  ;
-  B1.TemperatureStatus.HighWarning = IsInWarningLevel(testdata.Temperature , TemperatureRange.UpperWarningLimit , TemperatureRange.UpperThreshold);
-  B1.TemperatureStatus.HighBreach = IsThresholdBreached(testdata.Temperature , TemperatureRange.LowerThreshold , TemperatureRange.UpperThreshold);
+  B1.TemperatureStatus.LowBreach = IsThresholdBreached(ConvertedTemperature, TemperatureRange.LowerThreshold , TemperatureRange.UpperThreshold );
+  B1.TemperatureStatus.LowWarning = IsInWarningLevel(ConvertedTemperature ,TemperatureRange.LowerThreshold, TemperatureRange.LowerWarningLimit);
+  B1.TemperatureStatus.normal = IsNormal(ConvertedTemperature ,TemperatureRange.LowerWarningLimit, TemperatureRange.UpperWarningLimit)  ;
+  B1.TemperatureStatus.HighWarning = IsInWarningLevel(ConvertedTemperature , TemperatureRange.UpperWarningLimit , TemperatureRange.UpperThreshold);
+  B1.TemperatureStatus.HighBreach = IsThresholdBreached(ConvertedTemperature , TemperatureRange.LowerThreshold , TemperatureRange.UpperThreshold);
 
   
   B1.SOCStatus.LowBreach = IsThresholdBreached(testdata.StateOfCharge , SOCRange.LowerThreshold , SOCRange.UpperThreshold );
@@ -73,11 +81,11 @@ int main() {
   FuncPtrAlertOutOfRange = &PrintOnConsole;
   
   BatteryTestData testdata[5] = { 
-    { 20, 70, 0.7},
-    { 50, 85, 0},
-    { -5, 50, 0.5},
-    { 20, 10, 2 },
-    { 35, 30, -4}
+    { 20, 'c' ,70, 0.7},
+    { 50, 'C', 85, 0},
+    { -5, 'f', 50, 0.5},
+    { 20, 'F', 10, 2 },
+    { 35, 'C', 30, -4}
   };
   FuncPtrAssertBatteryIsOk(CheckBatteryStatus(testdata[0]),1);
   FuncPtrAssertBatteryIsOk(CheckBatteryStatus(testdata[1]),0);
