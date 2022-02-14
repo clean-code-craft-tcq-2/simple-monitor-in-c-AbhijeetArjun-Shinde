@@ -17,25 +17,25 @@ typedef struct{
 tyedef struct{
   float lowlimit;
   float highlimit;
-}RANGE;
+}range;
 
-RANGE TemperatureLowBreach = {0,TEMP_MIN_LIMIT};
-RANGE TemperatureLowWarning = {TEMP_MIN_LIMIT, (TEMP_MIN_LIMIT + 0.05 * TEMP_MAX_LIMIT)}; //5%
-RANGE TemperatureNormal = {(TEMP_MIN_LIMIT + 0.05 * TEMP_MAX_LIMIT) , (TEMP_MAX_LIMIT - 0.05 * TEMP_MAX_LIMIT )};
-RANGE TemperatureHighWarning = {(TEMP_MAX_LIMIT - 0.05 * TEMP_MAX_LIMIT ), TEMP_MAX_LIMIT}; //5%
-RANGE TemperatureHighBreach = {TEMP_MAX_LIMIT,100};
+range TemperatureLowBreach = {0,TEMP_MIN_LIMIT};
+range TemperatureLowWarning = {TEMP_MIN_LIMIT, (TEMP_MIN_LIMIT + 0.05 * TEMP_MAX_LIMIT)}; //5%
+range TemperatureNormal = {(TEMP_MIN_LIMIT + 0.05 * TEMP_MAX_LIMIT) , (TEMP_MAX_LIMIT - 0.05 * TEMP_MAX_LIMIT )};
+range TemperatureHighWarning = {(TEMP_MAX_LIMIT - 0.05 * TEMP_MAX_LIMIT ), TEMP_MAX_LIMIT}; //5%
+range TemperatureHighBreach = {TEMP_MAX_LIMIT,100};
 
-RANGE SOCLowBreach = {0,SOC_MIN_LIMIT};
-RANGE SOCLowWarning = {SOC_MIN_LIMIT, (SOC_MIN_LIMIT + 0.05 * SOC_MAX_LIMIT)}; //5%
-RANGE SOCNormal = {(SOC_MIN_LIMIT + 0.05 * SOC_MAX_LIMIT) , (SOC_MAX_LIMIT - 0.05 * SOC_MAX_LIMIT )};
-RANGE SOCHighWarning = {(SOC_MAX_LIMIT - 0.05 * SOC_MAX_LIMIT ), SOC_MAX_LIMIT}; //5%
-RANGE SOCHighBreach = {SOC_MAX_LIMIT,100};
+range SOCLowBreach = {0,SOC_MIN_LIMIT};
+range SOCLowWarning = {SOC_MIN_LIMIT, (SOC_MIN_LIMIT + 0.05 * SOC_MAX_LIMIT)}; //5%
+range SOCNormal = {(SOC_MIN_LIMIT + 0.05 * SOC_MAX_LIMIT) , (SOC_MAX_LIMIT - 0.05 * SOC_MAX_LIMIT )};
+range SOCHighWarning = {(SOC_MAX_LIMIT - 0.05 * SOC_MAX_LIMIT ), SOC_MAX_LIMIT}; //5%
+range SOCHighBreach = {SOC_MAX_LIMIT,100};
 
-RANGE ChargeRateLowBreach = {0,CHARGERATE_MIN_LIMIT};
-RANGE ChargeRateLowWarning = {CHARGERATE_MIN_LIMIT, (CHARGERATE_MIN_LIMIT + 0.05 * CHARGERATE_MAX_LIMIT)}; //5%
-RANGE ChargeRateNormal = {(CHARGERATE_MIN_LIMIT + 0.05 * CHARGERATE_MAX_LIMIT) , (CHARGERATE_MAX_LIMIT - 0.05 * CHARGERATE_MAX_LIMIT )};
-RANGE ChargeRateHighWarning = {(CHARGERATE_MAX_LIMIT - 0.05 * CHARGERATE_MAX_LIMIT ), CHARGERATE_MAX_LIMIT}; //5%
-RANGE ChargeRateHighBreach = {CHARGERATE_MAX_LIMIT,100};
+range ChargeRateLowBreach = {0,CHARGERATE_MIN_LIMIT};
+range ChargeRateLowWarning = {CHARGERATE_MIN_LIMIT, (CHARGERATE_MIN_LIMIT + 0.05 * CHARGERATE_MAX_LIMIT)}; //5%
+range ChargeRateNormal = {(CHARGERATE_MIN_LIMIT + 0.05 * CHARGERATE_MAX_LIMIT) , (CHARGERATE_MAX_LIMIT - 0.05 * CHARGERATE_MAX_LIMIT )};
+range ChargeRateHighWarning = {(CHARGERATE_MAX_LIMIT - 0.05 * CHARGERATE_MAX_LIMIT ), CHARGERATE_MAX_LIMIT}; //5%
+range ChargeRateHighBreach = {CHARGERATE_MAX_LIMIT,100};
 
 void PrintOnConsole( char message[]);
 
