@@ -6,52 +6,41 @@ void PrintOnConsole( char message[]){
   printf(" %s is out of range!\n", message);
 }
 
-BatteryStatus IsParameterInRange(float parameter, ParameterRange range){
-    (parameter <= range.LowBreachMaxLimit) ? {
-      B1.TemperatureStatus.LowBreach = 1;
-      return B1;
-    } : 
-    ( parameter > range.LowBreachMaxLimit && parameter <= range.LowWarningMaxLimit) ? {
-      B1.TemperatureStatus.LowWarning = 1;
-      return B1;
-    } : 
-     ( parameter > range.LowWarningMaxLimit && parameter <= range.HighWarningMinLimit) ? {
-      B1.TemperatureStatus.normal = 1;
-      return B1;
-    } :
-    ( parameter > range.HighWarningMinLimit && parameter <= range.HighBreachMinLimit) ? {
-      B1.TemperatureStatus.HighWarning = 1;
-      return B1;
-    } : 
-    ( parameter >HighBreachMinLimit) ?
-      B1.TemperatureStatus.HighBreach = 1;
-      return B1;
-    }
+bool IsLowerThresholdBreached(float parameter, ParameterRange range){
+    if( parameter < range.LowBreachMaxLimit )
+      return 1;
+    else 
+      return 0;
     }
 
-
+bool IsUpperThresholdBreached(float parameter, ParameterRange range){
+    if( parameter > range.HighBreachMinLimit )
+      return 1;
+    else 
+      return 0;
+    }
 
 BatteryStatus CheckBatteryStatus(BatteryTestData testdata) {
   BatteryStatus B1;
   
-  B1.TemperatureStatus.LowBreach = IsParameterInRange(testdata.Temperature , TemperatureRange.LowBreachMinLimit , TemperatureRange.LowBreachMaxLimit);
+  B1.TemperatureStatus.LowBreach = IsLowerThresholdBreached(testdata.Temperature , TemperatureRange.LowBreachMaxLimit);
   B1.TemperatureStatus.LowWarning = IsParameterInRange(testdata.Temperature , TemperatureRange.LowWarningMinLimit , TemperatureRange.LowWarningMaxLimit);
   B1.TemperatureStatus.normal = IsParameterInRange(testdata.Temperature , TemperatureRange.NormalMinLimit , TemperatureRange.NormalMaxLimit);
   B1.TemperatureStatus.HighWarning = IsParameterInRange(testdata.Temperature , TemperatureRange.HighWarningMinLimit , TemperatureRange.HighWarningMaxLimit);
-  B1.TemperatureStatus.HighBreach = IsParameterInRange(testdata.Temperature , TemperatureRange.HighBreachMinLimit , TemperatureRange.HighBreachMaxLimit);
+  B1.TemperatureStatus.HighBreach = IsUpperThresholdBreached(testdata.Temperature , TemperatureRange.HighBreachMinLimit , TemperatureRange.HighBreachMaxLimit);
   
-  B1.SOCStatus.LowBreach = IsParameterInRange(testdata.StateOfCharge , SOCRange.LowBreachMinLimit , SOCRange.LowBreachMaxLimit);
+  B1.SOCStatus.LowBreach = IsLowerThresholdBreached(testdata.StateOfCharge ,SOCRange.LowBreachMaxLimit);
   B1.SOCStatus.LowWarning = IsParameterInRange(testdata.StateOfCharge , SOCRange.LowWarningMinLimit , SOCRange.LowWarningMaxLimit);
   B1.SOCStatus.normal = IsParameterInRange(testdata.StateOfCharge , SOCRange.NormalMinLimit , SOCRange.NormalMaxLimit);
   B1.SOCStatus.HighWarning = IsParameterInRange(testdata.StateOfCharge , SOCRange.HighWarningMinLimit , SOCRange.HighWarningMaxLimit);
-  B1.SOCStatus.HighBreach = IsParameterInRange(testdata.StateOfCharge , SOCRange.HighBreachMinLimit , SOCRange.HighBreachMaxLimit);
+  B1.SOCStatus.HighBreach = IsUpperThresholdBreached(testdata.StateOfCharge , SOCRange.HighBreachMinLimit , SOCRange.HighBreachMaxLimit);
   
   
-  B1.ChargeRateStatus.LowBreach = IsParameterInRange(testdata.ChargeRate , ChargeRateRange.LowBreachMinLimit , ChargeRateRange.LowBreachMaxLimit);
+  B1.ChargeRateStatus.LowBreach = IsLowerThresholdBreached(testdata.ChargeRate , ChargeRateRange.LowBreachMaxLimit);
   B1.ChargeRateStatus.LowWarning = IsParameterInRange(testdata.ChargeRate , ChargeRateRange.LowWarningMinLimit , ChargeRateRange.LowWarningMaxLimit);
   B1.ChargeRateStatus.normal = IsParameterInRange(testdata.ChargeRate , ChargeRateRange.NormalMinLimit , ChargeRateRange.NormalMaxLimit);
   B1.ChargeRateStatus.HighWarning = IsParameterInRange(testdata.ChargeRate , ChargeRateRange.HighWarningMinLimit , ChargeRateRange.HighWarningMaxLimit);
-  B1.ChargeRateStatus.HighBreach = IsParameterInRange(testdata.ChargeRate , ChargeRateRange.HighBreachMinLimit , ChargeRateRange.HighBreachMaxLimit);
+  B1.ChargeRateStatus.HighBreach = IsUpperThresholdBreached(testdata.ChargeRate , ChargeRateRange.HighBreachMinLimit , ChargeRateRange.HighBreachMaxLimit);
   
   return B1;
 }
