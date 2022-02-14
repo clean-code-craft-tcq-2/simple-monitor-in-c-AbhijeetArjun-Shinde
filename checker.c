@@ -7,19 +7,29 @@ void PrintOnConsole( char message[]){
 }
 
 BatteryStatus IsParameterInRange(float parameter, ParameterRange range){
-    if(parameter <= range.LowBreachMaxLimit) 
+    if(parameter <= range.LowBreachMaxLimit) {
       B1.TemperatureStatus.LowBreach = 1;
-    else if ( parameter > range.LowBreachMaxLimit && parameter <= range.LowWarningMaxLimit)
-      B1.TemperatureStatus.LowWarning = 1;
-    else if ( parameter > range.LowWarningMaxLimit && parameter <= range.HighWarningMinLimit)
-      B1.TemperatureStatus.normal = 1;
-    else if ( parameter > range.HighWarningMinLimit && parameter <= range.HighBreachMinLimit)
-      B1.TemperatureStatus.HighWarning = 1;
-    else
-      B1.TemperatureStatus.HighBreach = 1;
+      return B1;
     }
-return B1;
-}
+    else if ( parameter > range.LowBreachMaxLimit && parameter <= range.LowWarningMaxLimit){
+      B1.TemperatureStatus.LowWarning = 1;
+      return B1;
+    }
+    else if ( parameter > range.LowWarningMaxLimit && parameter <= range.HighWarningMinLimit){
+      B1.TemperatureStatus.normal = 1;
+      return B1;
+    }
+    else if ( parameter > range.HighWarningMinLimit && parameter <= range.HighBreachMinLimit){
+      B1.TemperatureStatus.HighWarning = 1;
+      return B1;
+    }
+    else{
+      B1.TemperatureStatus.HighBreach = 1;
+      return B1;
+    }
+    }
+
+
 
 BatteryStatus CheckBatteryStatus(BatteryTestData testdata) {
   BatteryStatus B1;
