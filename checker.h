@@ -10,6 +10,7 @@
 
 typedef struct{
   float Temperature;
+  char TemperatureUnit;
   float StateOfCharge;
   float ChargeRate;
 } BatteryTestData;
