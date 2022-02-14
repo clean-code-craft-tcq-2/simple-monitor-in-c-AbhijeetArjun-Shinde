@@ -15,32 +15,59 @@ typedef struct{
 } BatteryTestData;
 
 typedef struct{
-  float lowlimit;
-  float highlimit;
-}range;
+  // Range limits
+  float LowBreachMinLimit;
+  float LowBreachMaxLimit;
+  float LowWarningMinLimit;
+  float LowWarningMaxLimit;
+  float NormalMinLimit;
+  float NormalMaxLimit;
+  float HighWarningMinLimit;
+  float HighWarningMaxLimit;
+  float HighBreachMinLimit;
+  float HighBreachMaxLimit;
+}ParameterRange;
 
-range TemperatureLowBreach = {0,TEMP_MIN_LIMIT};
-range TemperatureLowWarning = {TEMP_MIN_LIMIT, (TEMP_MIN_LIMIT + 0.05 * TEMP_MAX_LIMIT)}; //5%
-range TemperatureNormal = {(TEMP_MIN_LIMIT + 0.05 * TEMP_MAX_LIMIT) , (TEMP_MAX_LIMIT - 0.05 * TEMP_MAX_LIMIT )};
-range TemperatureHighWarning = {(TEMP_MAX_LIMIT - 0.05 * TEMP_MAX_LIMIT ), TEMP_MAX_LIMIT}; //5%
-range TemperatureHighBreach = {TEMP_MAX_LIMIT,100};
+typedef struct{
+  // range check result
+  int LowBreach;
+  int LowWarning;
+  int normal;
+  int HighWarning;
+  int HighBreach;
+}ParameterStatus;
 
-range SOCLowBreach = {0,SOC_MIN_LIMIT};
-range SOCLowWarning = {SOC_MIN_LIMIT, (SOC_MIN_LIMIT + 0.05 * SOC_MAX_LIMIT)}; //5%
-range SOCNormal = {(SOC_MIN_LIMIT + 0.05 * SOC_MAX_LIMIT) , (SOC_MAX_LIMIT - 0.05 * SOC_MAX_LIMIT )};
-range SOCHighWarning = {(SOC_MAX_LIMIT - 0.05 * SOC_MAX_LIMIT ), SOC_MAX_LIMIT}; //5%
-range SOCHighBreach = {SOC_MAX_LIMIT,100};
 
-range ChargeRateLowBreach = {0,CHARGERATE_MIN_LIMIT};
-range ChargeRateLowWarning = {CHARGERATE_MIN_LIMIT, (CHARGERATE_MIN_LIMIT + 0.05 * CHARGERATE_MAX_LIMIT)}; //5%
-range ChargeRateNormal = {(CHARGERATE_MIN_LIMIT + 0.05 * CHARGERATE_MAX_LIMIT) , (CHARGERATE_MAX_LIMIT - 0.05 * CHARGERATE_MAX_LIMIT )};
-range ChargeRateHighWarning = {(CHARGERATE_MAX_LIMIT - 0.05 * CHARGERATE_MAX_LIMIT ), CHARGERATE_MAX_LIMIT}; //5%
-range ChargeRateHighBreach = {CHARGERATE_MAX_LIMIT,100};
+typedef struct{
+  ParameterStatus TemperatureStatus;
+  ParameterStatus SOCStatus;
+  ParameterStatus ChargeRateStatus;
+}BatteryStatus;
+
+
+ParameterRange TemperatureRange = {0,TEMP_MIN_LIMIT ,
+                               TEMP_MIN_LIMIT,(TEMP_MIN_LIMIT + 0.05 * TEMP_MAX_LIMIT), 
+                               (TEMP_MIN_LIMIT + 0.05 * TEMP_MAX_LIMIT) ,(TEMP_MAX_LIMIT - 0.05 * TEMP_MAX_LIMIT ),
+                               (TEMP_MAX_LIMIT - 0.05 * TEMP_MAX_LIMIT ),TEMP_MAX_LIMIT,
+                               TEMP_MAX_LIMIT,100 };
+
+ParameterRange SOCRange  = {0,SOC_MIN_LIMIT,
+                       SOC_MIN_LIMIT, (SOC_MIN_LIMIT + 0.05 * SOC_MAX_LIMIT),
+                       (SOC_MIN_LIMIT + 0.05 * SOC_MAX_LIMIT) , (SOC_MAX_LIMIT - 0.05 * SOC_MAX_LIMIT ),
+                       (SOC_MAX_LIMIT - 0.05 * SOC_MAX_LIMIT ), SOC_MAX_LIMIT,
+                       SOC_MAX_LIMIT,100)   
+                       };
+
+ParameterRange ChargeRateRange =  {0,CHARGERATE_MIN_LIMIT,
+                              CHARGERATE_MIN_LIMIT, (CHARGERATE_MIN_LIMIT + 0.05 * CHARGERATE_MAX_LIMIT),
+                              (CHARGERATE_MIN_LIMIT + 0.05 * CHARGERATE_MAX_LIMIT) , (CHARGERATE_MAX_LIMIT - 0.05 * CHARGERATE_MAX_LIMIT ),
+                              (CHARGERATE_MAX_LIMIT - 0.05 * CHARGERATE_MAX_LIMIT ), CHARGERATE_MAX_LIMIT,
+                              CHARGERATE_MAX_LIMIT,1};
 
 void PrintOnConsole( char message[]);
 
 int IsParameterInRange(float parameter, float minvalue , float maxvalue , char parametername[]);
 
-int CheckBatteryStatus(BatteryTestData testdata);
+BatteryStatus CheckBatteryStatus(BatteryTestData testdata);
 
 void AssertBatteryIsOk(int result,int expectedresult);
