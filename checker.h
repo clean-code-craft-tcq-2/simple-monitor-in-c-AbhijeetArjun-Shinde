@@ -14,7 +14,7 @@ typedef struct{
   float ChargeRate;
 } BatteryTestData;
 
-tyedef struct{
+typedef struct{
   float lowlimit;
   float highlimit;
 }range;
