@@ -14,27 +14,28 @@ int IsParameterInRange(float parameter, float minvalue , float maxvalue){
 }
 
 BatteryStatus CheckBatteryStatus(BatteryTestData testdata) {
+  BatteryStatus B1;
   
-  BatteryStatus.TemperatureStatus.LowBreach = IsParameterInRange(testdata.Temperature , TemperatureRange.LowBreachMinLimit , TemperatureRange.LowBreachMaxLimit);
-  BatteryStatus.TemperatureStatus.LowWarning = IsParameterInRange(testdata.Temperature , TemperatureRange.LowWarningMinLimit , TemperatureRange.LowWarningMaxLimit);
-  BatteryStatus.TemperatureStatus.normal = IsParameterInRange(testdata.Temperature , TemperatureRange.NormalMinLimit , TemperatureRange.NormalMaxLimit);
-  BatteryStatus.TemperatureStatus.HighWarning = IsParameterInRange(testdata.Temperature , TemperatureRange.HighWarningMinLimit , TemperatureRange.HighWarningMaxLimit);
-  BatteryStatus.TemperatureStatus.HighBreach = IsParameterInRange(testdata.Temperature , TemperatureRange.HighBreachMinLimit , TemperatureRange.HighBreachMaxLimit);
+  B1.TemperatureStatus.LowBreach = IsParameterInRange(testdata.Temperature , TemperatureRange.LowBreachMinLimit , TemperatureRange.LowBreachMaxLimit);
+  B1.TemperatureStatus.LowWarning = IsParameterInRange(testdata.Temperature , TemperatureRange.LowWarningMinLimit , TemperatureRange.LowWarningMaxLimit);
+  B1.TemperatureStatus.normal = IsParameterInRange(testdata.Temperature , TemperatureRange.NormalMinLimit , TemperatureRange.NormalMaxLimit);
+  B1.TemperatureStatus.HighWarning = IsParameterInRange(testdata.Temperature , TemperatureRange.HighWarningMinLimit , TemperatureRange.HighWarningMaxLimit);
+  B1.TemperatureStatus.HighBreach = IsParameterInRange(testdata.Temperature , TemperatureRange.HighBreachMinLimit , TemperatureRange.HighBreachMaxLimit);
   
-  BatteryStatus.SOCStatus.LowBreach = IsParameterInRange(testdata.StateOfCharge , SOCRange.LowBreachMinLimit , SOCRange.LowBreachMaxLimit);
-  BatteryStatus.SOCStatus.LowWarning = IsParameterInRange(testdata.StateOfCharge , SOCRange.LowWarningMinLimit , SOCRange.LowWarningMaxLimit);
-  BatteryStatus.SOCStatus.normal = IsParameterInRange(testdata.StateOfCharge , SOCRange.NormalMinLimit , SOCRange.NormalMaxLimit);
-  BatteryStatus.SOCStatus.HighWarning = IsParameterInRange(testdata.StateOfCharge , SOCRange.HighWarningMinLimit , SOCRange.HighWarningMaxLimit);
-  BatteryStatus.SOCStatus.HighBreach = IsParameterInRange(testdata.StateOfCharge , SOCRange.HighBreachMinLimit , SOCRange.HighBreachMaxLimit);
+  B1.SOCStatus.LowBreach = IsParameterInRange(testdata.StateOfCharge , SOCRange.LowBreachMinLimit , SOCRange.LowBreachMaxLimit);
+  B1.SOCStatus.LowWarning = IsParameterInRange(testdata.StateOfCharge , SOCRange.LowWarningMinLimit , SOCRange.LowWarningMaxLimit);
+  B1.SOCStatus.normal = IsParameterInRange(testdata.StateOfCharge , SOCRange.NormalMinLimit , SOCRange.NormalMaxLimit);
+  B1.SOCStatus.HighWarning = IsParameterInRange(testdata.StateOfCharge , SOCRange.HighWarningMinLimit , SOCRange.HighWarningMaxLimit);
+  B1.SOCStatus.HighBreach = IsParameterInRange(testdata.StateOfCharge , SOCRange.HighBreachMinLimit , SOCRange.HighBreachMaxLimit);
   
   
-  BatteryStatus.ChargeRateStatus.LowBreach = IsParameterInRange(testdata.ChargeRate , ChargeRateRange.LowBreachMinLimit , ChargeRateRange.LowBreachMaxLimit);
-  BatteryStatus.ChargeRateStatus.LowWarning = IsParameterInRange(testdata.ChargeRate , ChargeRateRange.LowWarningMinLimit , ChargeRateRange.LowWarningMaxLimit);
-  BatteryStatus.ChargeRateStatus.normal = IsParameterInRange(testdata.ChargeRate , ChargeRateRange.NormalMinLimit , ChargeRateRange.NormalMaxLimit);
-  BatteryStatus.ChargeRateStatus.HighWarning = IsParameterInRange(testdata.ChargeRate , ChargeRateRange.HighWarningMinLimit , ChargeRateRange.HighWarningMaxLimit);
-  BatteryStatus.ChargeRateStatus.HighBreach = IsParameterInRange(testdata.ChargeRate , ChargeRateRange.HighBreachMinLimit , ChargeRateRange.HighBreachMaxLimit);
+  B1.ChargeRateStatus.LowBreach = IsParameterInRange(testdata.ChargeRate , ChargeRateRange.LowBreachMinLimit , ChargeRateRange.LowBreachMaxLimit);
+  B1.ChargeRateStatus.LowWarning = IsParameterInRange(testdata.ChargeRate , ChargeRateRange.LowWarningMinLimit , ChargeRateRange.LowWarningMaxLimit);
+  B1.ChargeRateStatus.normal = IsParameterInRange(testdata.ChargeRate , ChargeRateRange.NormalMinLimit , ChargeRateRange.NormalMaxLimit);
+  B1.ChargeRateStatus.HighWarning = IsParameterInRange(testdata.ChargeRate , ChargeRateRange.HighWarningMinLimit , ChargeRateRange.HighWarningMaxLimit);
+  B1.ChargeRateStatus.HighBreach = IsParameterInRange(testdata.ChargeRate , ChargeRateRange.HighBreachMinLimit , ChargeRateRange.HighBreachMaxLimit);
   
-  return BatteryStatus;
+  return B1;
 }
 
 void AssertBatteryIsOk(int result,int expectedresult) {
