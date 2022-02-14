@@ -6,11 +6,19 @@ void PrintOnConsole( char message[]){
   printf(" %s is out of range!\n", message);
 }
 
-int IsParameterInRange(float parameter, float minvalue , float maxvalue){
-    if(parameter < minvalue || parameter > maxvalue) {
-      return 0;
+BatteryStatus IsParameterInRange(float parameter, ParameterRange range){
+    if(parameter <= range.LowBreachMaxLimit) 
+      B1.TemperatureStatus.LowBreach = 1;
+    else if ( parameter > range.LowBreachMaxLimit && parameter <= range.LowWarningMaxLimit)
+      B1.TemperatureStatus.LowWarning = 1;
+    else if ( parameter > range.LowWarningMaxLimit && parameter <= range.HighWarningMinLimit)
+      B1.TemperatureStatus.normal = 1;
+    else if ( parameter > range.HighWarningMinLimit && parameter <= range.HighBreachMinLimit)
+      B1.TemperatureStatus.HighWarning = 1;
+    else
+      B1.TemperatureStatus.HighBreach = 1;
     }
-  return 1;
+return B1;
 }
 
 BatteryStatus CheckBatteryStatus(BatteryTestData testdata) {
