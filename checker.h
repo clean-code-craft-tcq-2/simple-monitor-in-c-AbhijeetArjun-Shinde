@@ -55,14 +55,15 @@ ParameterRange SOCRange  = {0,SOC_MIN_LIMIT,
                        SOC_MIN_LIMIT, (SOC_MIN_LIMIT + 0.05 * SOC_MAX_LIMIT),
                        (SOC_MIN_LIMIT + 0.05 * SOC_MAX_LIMIT) , (SOC_MAX_LIMIT - 0.05 * SOC_MAX_LIMIT ),
                        (SOC_MAX_LIMIT - 0.05 * SOC_MAX_LIMIT ), SOC_MAX_LIMIT,
-                       SOC_MAX_LIMIT,100)   
+                       SOC_MAX_LIMIT,100   
                        };
 
 ParameterRange ChargeRateRange =  {0,CHARGERATE_MIN_LIMIT,
-                              CHARGERATE_MIN_LIMIT, (CHARGERATE_MIN_LIMIT + 0.05 * CHARGERATE_MAX_LIMIT),
-                              (CHARGERATE_MIN_LIMIT + 0.05 * CHARGERATE_MAX_LIMIT) , (CHARGERATE_MAX_LIMIT - 0.05 * CHARGERATE_MAX_LIMIT ),
-                              (CHARGERATE_MAX_LIMIT - 0.05 * CHARGERATE_MAX_LIMIT ), CHARGERATE_MAX_LIMIT,
-                              CHARGERATE_MAX_LIMIT,1};
+                                   CHARGERATE_MIN_LIMIT, (CHARGERATE_MIN_LIMIT + 0.05 * CHARGERATE_MAX_LIMIT),
+                                   (CHARGERATE_MIN_LIMIT + 0.05 * CHARGERATE_MAX_LIMIT) , (CHARGERATE_MAX_LIMIT - 0.05 * CHARGERATE_MAX_LIMIT ),
+                                   (CHARGERATE_MAX_LIMIT - 0.05 * CHARGERATE_MAX_LIMIT ), CHARGERATE_MAX_LIMIT,
+                                   CHARGERATE_MAX_LIMIT,1
+                                   };
 
 void PrintOnConsole( char message[]);
 
