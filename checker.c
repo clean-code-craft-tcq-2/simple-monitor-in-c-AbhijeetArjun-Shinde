@@ -83,8 +83,8 @@ int main() {
   BatteryTestData testdata[5] = { 
     { 20, 'c' ,70, 0.7},
     { 50, 'C', 85, 0},
-    { -5, 'f', 50, 0.5},
-    { 20, 'F', 10, 2 },
+    { 23, 'f', 50, 0.5},
+    { 68, 'F', 10, 2 },
     { 35, 'C', 30, -4}
   };
   FuncPtrAssertBatteryIsOk(CheckBatteryStatus(testdata[0]),1);
