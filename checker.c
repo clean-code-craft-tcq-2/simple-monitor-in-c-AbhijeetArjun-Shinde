@@ -31,19 +31,19 @@ BatteryStatus CheckBatteryStatus(BatteryTestData testdata) {
   BatteryStatus B1 = {0};
   
   B1.TemperatureStatus.LowBreach = IsThresholdBreached(testdata.Temperature , TemperatureRange);
-  B1.TemperatureStatus.LowWarning = IsAtLowerWarningLevel(testdata.Temperature , TemperatureRange);
-  B1.TemperatureStatus.HighWarning = IsAtHigherWarningLevel(testdata.Temperature , TemperatureRange);
+  B1.TemperatureStatus.LowWarning = IsInLowerWarningLevel(testdata.Temperature , TemperatureRange);
+  B1.TemperatureStatus.HighWarning = IsInHigherWarningLevel(testdata.Temperature , TemperatureRange);
   B1.TemperatureStatus.HighBreach = IsThresholdBreached(testdata.Temperature , TemperatureRange);
   
   B1.SOCStatus.LowBreach = IsThresholdBreached(testdata.StateOfCharge ,SOCRange);
-  B1.SOCStatus.LowWarning = IsAtLowerWarningLevel(testdata.StateOfCharge ,SOCRange);
-  B1.SOCStatus.HighWarning = IsAtHigherWarningLevel(testdata.StateOfCharge ,SOCRange);
+  B1.SOCStatus.LowWarning = IsInLowerWarningLevel(testdata.StateOfCharge ,SOCRange);
+  B1.SOCStatus.HighWarning = IsInHigherWarningLevel(testdata.StateOfCharge ,SOCRange);
   B1.SOCStatus.HighBreach = IsThresholdBreached(testdata.StateOfCharge , SOCRange );
   
   
   B1.ChargeRateStatus.LowBreach = IsThresholdBreached(testdata.ChargeRate , ChargeRateRange);
-  B1.ChargeRateStatus.LowWarning = IsAtLowerWarningLevel(testdata.ChargeRate , ChargeRateRange);
-  B1.ChargeRateStatus.HighWarning = IsAtHigherWarningLevel(testdata.ChargeRate , ChargeRateRange);
+  B1.ChargeRateStatus.LowWarning = IsInLowerWarningLevel(testdata.ChargeRate , ChargeRateRange);
+  B1.ChargeRateStatus.HighWarning = IsInHigherWarningLevel(testdata.ChargeRate , ChargeRateRange);
   B1.ChargeRateStatus.HighBreach = IsThresholdBreached(testdata.ChargeRate , ChargeRateRange);
   
   return B1;
