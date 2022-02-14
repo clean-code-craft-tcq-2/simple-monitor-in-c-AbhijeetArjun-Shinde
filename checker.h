@@ -15,17 +15,10 @@ typedef struct{
 } BatteryTestData;
 
 typedef struct{
-  // Range limits
-  float LowBreachMinLimit;
-  float LowBreachMaxLimit;
-  float LowWarningMinLimit;
-  float LowWarningMaxLimit;
-  float NormalMinLimit;
-  float NormalMaxLimit;
-  float HighWarningMinLimit;
-  float HighWarningMaxLimit;
-  float HighBreachMinLimit;
-  float HighBreachMaxLimit;
+  float LowerThreshold;
+  float LowerWarningLimit;
+  float UpperWarningLimit;
+  float UpperThreshold;
 }ParameterRange;
 
 typedef struct{
@@ -45,25 +38,11 @@ typedef struct{
 }BatteryStatus;
 
 
-ParameterRange TemperatureRange = {0,TEMP_MIN_LIMIT ,
-                               TEMP_MIN_LIMIT,(TEMP_MIN_LIMIT + 0.05 * TEMP_MAX_LIMIT), 
-                               (TEMP_MIN_LIMIT + 0.05 * TEMP_MAX_LIMIT) ,(TEMP_MAX_LIMIT - 0.05 * TEMP_MAX_LIMIT ),
-                               (TEMP_MAX_LIMIT - 0.05 * TEMP_MAX_LIMIT ),TEMP_MAX_LIMIT,
-                               TEMP_MAX_LIMIT,100 };
+ParameterRange TemperatureRange = {TEMP_MIN_LIMIT , (TEMP_MIN_LIMIT + 0.05 * TEMP_MAX_LIMIT), (TEMP_MAX_LIMIT - 0.05 * TEMP_MAX_LIMIT ) , TEMP_MAX_LIMIT};
 
-ParameterRange SOCRange  = {0,SOC_MIN_LIMIT,
-                       SOC_MIN_LIMIT, (SOC_MIN_LIMIT + 0.05 * SOC_MAX_LIMIT),
-                       (SOC_MIN_LIMIT + 0.05 * SOC_MAX_LIMIT) , (SOC_MAX_LIMIT - 0.05 * SOC_MAX_LIMIT ),
-                       (SOC_MAX_LIMIT - 0.05 * SOC_MAX_LIMIT ), SOC_MAX_LIMIT,
-                       SOC_MAX_LIMIT,100   
-                       };
+ParameterRange SOCRange  = {SOC_MIN_LIMIT, (SOC_MIN_LIMIT + 0.05 * SOC_MAX_LIMIT), (SOC_MAX_LIMIT - 0.05 * SOC_MAX_LIMIT ),SOC_MAX_LIMIT};
 
-ParameterRange ChargeRateRange =  {0,CHARGERATE_MIN_LIMIT,
-                                   CHARGERATE_MIN_LIMIT, (CHARGERATE_MIN_LIMIT + 0.05 * CHARGERATE_MAX_LIMIT),
-                                   (CHARGERATE_MIN_LIMIT + 0.05 * CHARGERATE_MAX_LIMIT) , (CHARGERATE_MAX_LIMIT - 0.05 * CHARGERATE_MAX_LIMIT ),
-                                   (CHARGERATE_MAX_LIMIT - 0.05 * CHARGERATE_MAX_LIMIT ), CHARGERATE_MAX_LIMIT,
-                                   CHARGERATE_MAX_LIMIT,1
-                                   };
+ParameterRange ChargeRateRange =  {CHARGERATE_MIN_LIMIT , (CHARGERATE_MIN_LIMIT + 0.05 * CHARGERATE_MAX_LIMIT),(CHARGERATE_MAX_LIMIT - 0.05 * CHARGERATE_MAX_LIMIT ), CHARGERATE_MAX_LIMIT};
 
 void PrintOnConsole( char message[]);
 
