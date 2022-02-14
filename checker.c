@@ -29,7 +29,7 @@ void AssertBatteryIsOk(int result,int expectedresult) {
  
 int main() {
   void (*FuncPtrAssertBatteryIsOk)(int , int );
-  FuncPtrAssertBatteryIsOk = &AssertBatteryIsOk
+  FuncPtrAssertBatteryIsOk = &AssertBatteryIsOk;
   BatteryTestData testdata[5] = { 
     { 20, 70, 0.7},
     { 50, 85, 0},
