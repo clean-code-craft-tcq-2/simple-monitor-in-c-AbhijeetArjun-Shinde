@@ -11,19 +11,19 @@ BatteryStatus IsParameterInRange(float parameter, ParameterRange range){
       B1.TemperatureStatus.LowBreach = 1;
       return B1;
     }
-    else if ( parameter > range.LowBreachMaxLimit && parameter <= range.LowWarningMaxLimit){
+    if ( parameter > range.LowBreachMaxLimit && parameter <= range.LowWarningMaxLimit){
       B1.TemperatureStatus.LowWarning = 1;
       return B1;
     }
-    else if ( parameter > range.LowWarningMaxLimit && parameter <= range.HighWarningMinLimit){
+    if ( parameter > range.LowWarningMaxLimit && parameter <= range.HighWarningMinLimit){
       B1.TemperatureStatus.normal = 1;
       return B1;
     }
-    else if ( parameter > range.HighWarningMinLimit && parameter <= range.HighBreachMinLimit){
+    if ( parameter > range.HighWarningMinLimit && parameter <= range.HighBreachMinLimit){
       B1.TemperatureStatus.HighWarning = 1;
       return B1;
     }
-    else{
+    if { parameter >HighBreachMinLimit)
       B1.TemperatureStatus.HighBreach = 1;
       return B1;
     }
