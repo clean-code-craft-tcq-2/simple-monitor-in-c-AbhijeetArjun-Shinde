@@ -2,9 +2,12 @@
 #include <assert.h>
 #include "checker.h"
 
-void PrintOnConsole( char message[]){
-  printf(" %s is out of range!\n", message);
+BatteryStatus B1 = {0};
+
+void PrintOnConsole(char message[]){
+  printf(" %s!\n", message); 
 }
+
 
 int IsThresholdBreached(float parameter, ParameterRange range){
     if( parameter < range.LowerThreshold || parameter > range.UpperThreshold )
@@ -28,7 +31,7 @@ int IsInHigherWarningLevel(float parameter, ParameterRange range){
     }
 
 BatteryStatus CheckBatteryStatus(BatteryTestData testdata) {
-  BatteryStatus B1 = {0};
+
   
   B1.TemperatureStatus.LowBreach = IsThresholdBreached(testdata.Temperature , TemperatureRange);
   B1.TemperatureStatus.LowWarning = IsInLowerWarningLevel(testdata.Temperature , TemperatureRange);
@@ -59,6 +62,10 @@ void AssertBatteryIsOk(BatteryStatus result,int expectedresult) {
 int main() {
   void (*FuncPtrAssertBatteryIsOk)(BatteryStatus , int );
   FuncPtrAssertBatteryIsOk = &AssertBatteryIsOk;
+  
+  void (*FuncPtrAlertOutOfRange)(int , char [] );
+  FuncPtrAlertOutOfRange = &PrintOnConsole;
+  
   BatteryTestData testdata[5] = { 
     { 20, 70, 0.7},
     { 50, 85, 0},
