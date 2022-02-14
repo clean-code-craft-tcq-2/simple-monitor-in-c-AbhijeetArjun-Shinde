@@ -20,4 +20,6 @@ void PrintOnConsole( char message[]);
 
 int IsParameterInRange(float parameter, float minvalue , float maxvalue , char parametername[]);
 
-void AssertBatteryIsOk(BatteryTestData testdata, int expectedresult);
+int CheckBatteryStatus(BatteryTestData testdata);
+
+void AssertBatteryIsOk(int result,int expectedresult);
