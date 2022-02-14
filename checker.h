@@ -48,9 +48,9 @@ void PrintOnConsole( char message[]);
 
 int IsThresholdBreached(float parameter, ParameterRange range);
 
-int IsAtLowerWarningLevel(float parameter, ParameterRange range);
+int IsInLowerWarningLevel(float parameter, ParameterRange range);
 
-int IsAtHigherWarningLevel(float parameter, ParameterRange range);
+int IsInHigherWarningLevel(float parameter, ParameterRange range);
 
 BatteryStatus CheckBatteryStatus(BatteryTestData testdata);
 
