@@ -9,47 +9,50 @@ void PrintOnConsole(char message[]){
 }
 
 
-int IsThresholdBreached(float parameter, ParameterRange range){
-    if( parameter < range.LowerThreshold || parameter > range.UpperThreshold )
+int IsThresholdBreached(float parameter, float lowerlimit , float upperlimit){
+    if( parameter < lowerlimit )
+      return 1;
+    else if (parameter > upperlimit) 
+      return 2;
+    else
+      return 0;
+    }
+
+int IsInWarningLevel(float parameter, float lowerlimit , float upperlimit){
+    if( ( parameter >= lowerlimit) && (parameter <= upperlimit ) )
       return 1;
     else 
       return 0;
     }
 
-int IsInLowerWarningLevel(float parameter, ParameterRange range){
-    if( ( parameter >= range.LowerThreshold) && (parameter <= range.LowerWarningLimit ) )
+int IsNormal(float parameter, float lowerlimit , float upperlimit){
+    if( ( parameter > lowerlimit) && (parameter < upperlimit ) )
       return 1;
     else 
       return 0;
     }
 
-int IsInHigherWarningLevel(float parameter, ParameterRange range){
-    if( ( parameter >= range.UpperWarningLimit ) &&  (parameter <= range.UpperThreshold) ) 
-      return 1;
-    else 
-      return 0;
-    }
 
 BatteryStatus CheckBatteryStatus(BatteryTestData testdata) {
 
   
-  B1.TemperatureStatus.LowBreach = IsThresholdBreached(testdata.Temperature , TemperatureRange);
-  B1.TemperatureStatus.LowWarning = IsInLowerWarningLevel(testdata.Temperature , TemperatureRange);
-  B1.TemperatureStatus.HighWarning = IsInHigherWarningLevel(testdata.Temperature , TemperatureRange);
-  B1.TemperatureStatus.HighBreach = IsThresholdBreached(testdata.Temperature , TemperatureRange);
-  //B1.TemperatureStatus.normal = (!B1.TemperatureStatus.LowBreach && !B1.TemperatureStatus.LowWarning && !B1.TemperatureStatus.HighWarning && !B1.TemperatureStatus.HighBreach);
+  B1.TemperatureStatus.LowBreach = IsThresholdBreached(testdata.Temperature , TemperatureRange.LowerThreshold , TemperatureRange.UpperThreshold );
+  B1.TemperatureStatus.LowWarning = IsInWarningLevel(testdata.Temperature ,TemperatureRange.LowerThreshold, TemperatureRange.LowerWarningLimit);
+  B1.TemperatureStatus.HighWarning = IsInWarningLevel(testdata.Temperature , TemperatureRange.UpperWarningLimit , TemperatureRange.UpperThreshold);
+  B1.TemperatureStatus.HighBreach = IsThresholdBreached(testdata.Temperature , TemperatureRange.LowerThreshold , TemperatureRange.UpperThreshold);
+  B1.TemperatureStatus.normal = IsNormal(testdata.Temperature ,TemperatureRange.LowerWarningLimit, TemperatureRange.UpperWarningLimit)  ;
   
   B1.SOCStatus.LowBreach = IsThresholdBreached(testdata.StateOfCharge ,SOCRange);
-  B1.SOCStatus.LowWarning = IsInLowerWarningLevel(testdata.StateOfCharge ,SOCRange);
-  B1.SOCStatus.HighWarning = IsInHigherWarningLevel(testdata.StateOfCharge ,SOCRange);
+  B1.SOCStatus.LowWarning = IsInWarningLevel(testdata.StateOfCharge ,SOCRange);
+  B1.SOCStatus.HighWarning = IsInWarningLevel(testdata.StateOfCharge ,SOCRange);
   B1.SOCStatus.HighBreach = IsThresholdBreached(testdata.StateOfCharge , SOCRange );
-  //B1.SOCStatus.normal = (!B1.SOCStatus.LowBreach && !B1.SOCStatus.LowWarning && !B1.SOCStatus.HighWarning && !B1.SOCStatus.HighBreach);
+  B1.SOCStatus.normal = IsNormal(testdata.StateOfCharge ,SOCRange.LowerWarningLimit, SOCRange.UpperWarningLimit)  ;
   
   B1.ChargeRateStatus.LowBreach = IsThresholdBreached(testdata.ChargeRate , ChargeRateRange);
-  B1.ChargeRateStatus.LowWarning = IsInLowerWarningLevel(testdata.ChargeRate , ChargeRateRange);
-  B1.ChargeRateStatus.HighWarning = IsInHigherWarningLevel(testdata.ChargeRate , ChargeRateRange);
+  B1.ChargeRateStatus.LowWarning = IsInWarningLevel(testdata.ChargeRate , ChargeRateRange);
+  B1.ChargeRateStatus.HighWarning = IsInWarningLevel(testdata.ChargeRate , ChargeRateRange);
   B1.ChargeRateStatus.HighBreach = IsThresholdBreached(testdata.ChargeRate , ChargeRateRange);
-  //B1.ChargeRateStatus.normal = (!B1.ChargeRateStatus.LowBreach && !B1.ChargeRateStatus.LowWarning && !B1.ChargeRateStatus.HighWarning && !B1.ChargeRateStatus.HighBreach);
+  B1.ChargeRateStatus.normal = IsNormal(testdata.ChargeRate ,TemperatureRange.LowerWarningLimit, TemperatureRange.UpperWarningLimit)  ;
   
   return B1;
 }
