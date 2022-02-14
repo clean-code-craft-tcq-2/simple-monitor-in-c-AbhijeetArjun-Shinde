@@ -14,16 +14,22 @@ int IsParameterInRange(float parameter, float minvalue , float maxvalue, char pa
   return 1;
 }
 
-void AssertBatteryIsOk(BatteryTestData testdata, int expectedresult) {
+int CheckBatteryStatus(BatteryTestData testdata) {
   int output;
   output = IsParameterInRange(testdata.Temperature , TEMP_MIN_LIMIT , TEMP_MAX_LIMIT, "Temperature");
   output &= IsParameterInRange(testdata.StateOfCharge, SOC_MIN_LIMIT , SOC_MAX_LIMIT, "State of charge" );
-  output &= IsParameterInRange(testdata.ChargeRate , CHARGERATE_MIN_LIMIT , CHARGERATE_MAX_LIMIT,"Charhe Rate");
-  assert( output == expectedresult);
+  output &= IsParameterInRange(testdata.ChargeRate , CHARGERATE_MIN_LIMIT , CHARGERATE_MAX_LIMIT,"Charge Rate");
+  return output;
 }
 
+void AssertBatteryIsOk(int result,int expectedresult) {
+
+  assert( result == expectedresult);
+}
  
 int main() {
+  void (*FuncPtrAssertBatteryIsOk)(int , int );
+  FuncPtrAssertBatteryIsOk = &AssertBatteryIsOk
   BatteryTestData testdata[5] = { 
     { 20, 70, 0.7},
     { 50, 85, 0},
@@ -31,9 +37,9 @@ int main() {
     { 20, 10, 2 },
     { 35, 30, -4}
   };
-  AssertBatteryIsOk(testdata[0],1);
-  AssertBatteryIsOk(testdata[1],0);
-  AssertBatteryIsOk(testdata[2],0);
-  AssertBatteryIsOk(testdata[3],0);
-  AssertBatteryIsOk(testdata[4],0);
+  FuncPtrAssertBatteryIsOk(CheckBatteryStatus(testdata[0]),1);
+  FuncPtrAssertBatteryIsOk(CheckBatteryStatus(testdata[1]),0);
+  FuncPtrAssertBatteryIsOk(CheckBatteryStatus(testdata[2]),0);
+  FuncPtrAssertBatteryIsOk(CheckBatteryStatus(testdata[3]),0);
+  FuncPtrAssertBatteryIsOk(CheckBatteryStatus(testdata[4]),0);
 }
