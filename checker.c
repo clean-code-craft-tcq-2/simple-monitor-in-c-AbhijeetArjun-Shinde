@@ -63,7 +63,7 @@ int main() {
   void (*FuncPtrAssertBatteryIsOk)(BatteryStatus , int );
   FuncPtrAssertBatteryIsOk = &AssertBatteryIsOk;
   
-  void (*FuncPtrAlertOutOfRange)(int , char [] );
+  void (*FuncPtrAlertOutOfRange)(char [] );
   FuncPtrAlertOutOfRange = &PrintOnConsole;
   
   BatteryTestData testdata[5] = { 
