@@ -6,21 +6,21 @@ void PrintOnConsole( char message[]){
   printf(" %s is out of range!\n", message);
 }
 
-bool IsThresholdBreached(float parameter, ParameterRange range){
+int IsThresholdBreached(float parameter, ParameterRange range){
     if( parameter < range.LowBreachMaxLimit || parameter > range.HighBreachMinLimit )
       return 1;
     else 
       return 0;
     }
 
-bool IsAtLowerWarningLevel(float parameter, ParameterRange range){
+int IsAtLowerWarningLevel(float parameter, ParameterRange range){
     if( ( parameter >= range.LowBreachMaxLimit) && (parameter <= range.LowWarningMaxLimit ) )
       return 1;
     else 
       return 0;
     }
 
-bool IsAtHigherWarningLevel(float parameter, ParameterRange range){
+int IsAtHigherWarningLevel(float parameter, ParameterRange range){
     if( ( parameter >= range.HighWarningMinLimit ) &&  (parameter <= range.HighBreachMinLimit) ) 
       return 1;
     else 
