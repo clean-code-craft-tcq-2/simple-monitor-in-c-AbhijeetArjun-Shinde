@@ -13,8 +13,15 @@ bool IsThresholdBreached(float parameter, ParameterRange range){
       return 0;
     }
 
-bool IsAtWarningLevel(float parameter, ParameterRange range){
-    if( ( (parameter >= range.LowBreachMaxLimit) && (parameter <= range.LowWarningMaxLimit )) ||  ( ( parameter >= range.HighWarningMinLimit ) &&  (parameter <= range.HighBreachMinLimit) ) )
+bool IsAtLowerWarningLevel(float parameter, ParameterRange range){
+    if( ( parameter >= range.LowBreachMaxLimit) && (parameter <= range.LowWarningMaxLimit ) )
+      return 1;
+    else 
+      return 0;
+    }
+
+bool IsAtHigherWarningLevel(float parameter, ParameterRange range){
+    if( ( parameter >= range.HighWarningMinLimit ) &&  (parameter <= range.HighBreachMinLimit) ) 
       return 1;
     else 
       return 0;
@@ -23,21 +30,21 @@ bool IsAtWarningLevel(float parameter, ParameterRange range){
 BatteryStatus CheckBatteryStatus(BatteryTestData testdata) {
   BatteryStatus B1 = {0};
   
-  B1.TemperatureStatus.LowBreach = IsThresholdBreached(testdata.Temperature , TemperatureRange.LowBreachMaxLimit);
-  B1.TemperatureStatus.LowWarning = IsAtWarningLevel(testdata.Temperature , TemperatureRange.LowWarningMinLimit , TemperatureRange.LowWarningMaxLimit);
-  B1.TemperatureStatus.HighWarning = IsAtWarningLevel(testdata.Temperature , TemperatureRange.HighWarningMinLimit , TemperatureRange.HighWarningMaxLimit);
-  B1.TemperatureStatus.HighBreach = IsThresholdBreached(testdata.Temperature , TemperatureRange.HighBreachMinLimit);
+  B1.TemperatureStatus.LowBreach = IsThresholdBreached(testdata.Temperature , TemperatureRange);
+  B1.TemperatureStatus.LowWarning = IsAtLowerWarningLevel(testdata.Temperature , TemperatureRange);
+  B1.TemperatureStatus.HighWarning = IsAtHigherWarningLevel(testdata.Temperature , TemperatureRange);
+  B1.TemperatureStatus.HighBreach = IsThresholdBreached(testdata.Temperature , TemperatureRange);
   
-  B1.SOCStatus.LowBreach = IsThresholdBreached(testdata.StateOfCharge ,SOCRange.LowBreachMaxLimit);
-  B1.SOCStatus.LowWarning = IsAtWarningLevel(testdata.StateOfCharge , SOCRange.LowWarningMinLimit , SOCRange.LowWarningMaxLimit);
-  B1.SOCStatus.HighWarning = IsAtWarningLevel(testdata.StateOfCharge , SOCRange.HighWarningMinLimit , SOCRange.HighWarningMaxLimit);
-  B1.SOCStatus.HighBreach = IsThresholdBreached(testdata.StateOfCharge , SOCRange.HighBreachMinLimit );
+  B1.SOCStatus.LowBreach = IsThresholdBreached(testdata.StateOfCharge ,SOCRange);
+  B1.SOCStatus.LowWarning = IsAtLowerWarningLevel(testdata.StateOfCharge ,SOCRange);
+  B1.SOCStatus.HighWarning = IsAtHigherWarningLevel(testdata.StateOfCharge ,SOCRange);
+  B1.SOCStatus.HighBreach = IsThresholdBreached(testdata.StateOfCharge , SOCRange );
   
   
-  B1.ChargeRateStatus.LowBreach = IsThresholdBreached(testdata.ChargeRate , ChargeRateRange.LowBreachMaxLimit);
-  B1.ChargeRateStatus.LowWarning = IsAtWarningLevel(testdata.ChargeRate , ChargeRateRange.LowWarningMinLimit , ChargeRateRange.LowWarningMaxLimit);
-  B1.ChargeRateStatus.HighWarning = IsAtWarningLevel(testdata.ChargeRate , ChargeRateRange.HighWarningMinLimit , ChargeRateRange.HighWarningMaxLimit);
-  B1.ChargeRateStatus.HighBreach = IsThresholdBreached(testdata.ChargeRate , ChargeRateRange.HighBreachMinLimit);
+  B1.ChargeRateStatus.LowBreach = IsThresholdBreached(testdata.ChargeRate , ChargeRateRange);
+  B1.ChargeRateStatus.LowWarning = IsAtLowerWarningLevel(testdata.ChargeRate , ChargeRateRange);
+  B1.ChargeRateStatus.HighWarning = IsAtHigherWarningLevel(testdata.ChargeRate , ChargeRateRange);
+  B1.ChargeRateStatus.HighBreach = IsThresholdBreached(testdata.ChargeRate , ChargeRateRange);
   
   return B1;
 }
