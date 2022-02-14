@@ -67,10 +67,10 @@ ParameterRange ChargeRateRange =  {0,CHARGERATE_MIN_LIMIT,
 
 void PrintOnConsole( char message[]);
 
-bool IsLowerThresholdBreached(float parameter, ParameterRange range);
+bool IsThresholdBreached(float parameter, ParameterRange range);
 
-bool IsUpperThresholdBreached(float parameter, ParameterRange range);
-  
+bool IsAtWarningLevel(float parameter, ParameterRange range);
+
 BatteryStatus CheckBatteryStatus(BatteryTestData testdata);
 
 void AssertBatteryIsOk(BatteryStatus result,int expectedresult);
