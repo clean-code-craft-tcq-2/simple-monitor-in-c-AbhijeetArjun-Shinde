@@ -71,4 +71,4 @@ int IsParameterInRange(float parameter, float minvalue , float maxvalue);
 
 BatteryStatus CheckBatteryStatus(BatteryTestData testdata);
 
-void AssertBatteryIsOk(int result,int expectedresult);
+void AssertBatteryIsOk(BatteryStatus result,int expectedresult);
