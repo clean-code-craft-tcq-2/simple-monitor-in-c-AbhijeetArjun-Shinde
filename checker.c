@@ -7,21 +7,21 @@ void PrintOnConsole( char message[]){
 }
 
 int IsThresholdBreached(float parameter, ParameterRange range){
-    if( parameter < range.LowBreachMaxLimit || parameter > range.HighBreachMinLimit )
+    if( parameter < range.LowerThreshold || parameter > range.UpperThreshold )
       return 1;
     else 
       return 0;
     }
 
-int IsAtLowerWarningLevel(float parameter, ParameterRange range){
-    if( ( parameter >= range.LowBreachMaxLimit) && (parameter <= range.LowWarningMaxLimit ) )
+int IsInLowerWarningLevel(float parameter, ParameterRange range){
+    if( ( parameter >= range.LowerThreshold) && (parameter <= range.LowerWarningLimit ) )
       return 1;
     else 
       return 0;
     }
 
-int IsAtHigherWarningLevel(float parameter, ParameterRange range){
-    if( ( parameter >= range.HighWarningMinLimit ) &&  (parameter <= range.HighBreachMinLimit) ) 
+int IsInHigherWarningLevel(float parameter, ParameterRange range){
+    if( ( parameter >= range.UpperWarningLimit ) &&  (parameter <= range.UpperThreshold) ) 
       return 1;
     else 
       return 0;
