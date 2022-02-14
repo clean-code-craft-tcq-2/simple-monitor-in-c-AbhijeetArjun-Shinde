@@ -71,7 +71,7 @@ int IsThresholdBreached(float parameter, ParameterRange range);
 
 int IsAtLowerWarningLevel(float parameter, ParameterRange range);
 
-int IsAtHigherWarningLevel(float parameter, ParameterRange range)
+int IsAtHigherWarningLevel(float parameter, ParameterRange range);
 
 BatteryStatus CheckBatteryStatus(BatteryTestData testdata);
 
