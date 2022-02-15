@@ -9,6 +9,7 @@
 #define CHARGERATE_MIN_LIMIT 0.0
 #define CHARGERATE_MAX_LIMIT 0.8
 
+#define DISPLAY_MESSAGE_LANG English
 
 typedef struct{
   float Temperature;
