@@ -14,7 +14,7 @@ void BreachAlerter( bool status,int messageID){
   if(status){
     if( DISPLAY_MESSAGE_LANG_ID ==1)
     PrintOnConsole(DisplayMessageEn[messageID]);
-    else
+    else if( DISPLAY_MESSAGE_LANG_ID ==2)
     PrintOnConsole(DisplayMessageDe[messageID]);
   } 
   return;
