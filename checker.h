@@ -40,10 +40,12 @@ typedef struct{
   ParameterStatus ChargeRateStatus;
 }BatteryStatus;
 
-char DisplayMessage[12][50] = { " Temperature Low Threshold Breached " , " Temperature Approaching Low Threshold Breach" , " Temperature Approaching High Threshold Breach" , " Temperature High Threshold Breached " ,
+char DisplayMessageEn[12][50] = { " Temperature Low Threshold Breached " , " Temperature Approaching Low Threshold Breach" , " Temperature Approaching High Threshold Breach" , " Temperature High Threshold Breached " ,
                                 " State of Charge Low Threshold Breached " , " State of Charge Approaching Low Threshold Breach" , " State of Charge Approaching High Threshold Breach" , " State of Charge High Threshold Breached " ,
                                " Charge Rate Low Threshold Breached " , " Charge Rate Approaching Low Threshold Breach" , " Charge Rate Approaching High Threshold Breach" , " Charge Rate High Threshold Breached " };
-
+char DisplayMessageDe[12][50] ={ " Temperatur unterer Schwellenwert überschritten " , " Temperatur nahe unterem Schwellenwert überschritten" , " Temperatur nahe oberem Schwellenwert überschritten" , " Temperatur oberer Schwellenwert überschritten" ,
+                                " Zustand der Ladung - Niedriger Schwellenwert verletzt " , " Zustand der Ladung - Annäherung an niedrigen Schwellenwert verletzt" , " Zustand der Ladung - Annäherung an hohen Schwellenwert verletzt" , " Zustand der Ladung - hoher Schwellenwert verletzt" ,
+                               " Charge Rate Low Threshold Breached " , " Charge Rate Approaching Low Threshold Breach" , " Charge Rate Approaching High Threshold Breach" , " Charge Rate High Threshold Breached " };
 
 ParameterRange TemperatureRange = {TEMP_MIN_LIMIT , (TEMP_MIN_LIMIT + 0.05 * TEMP_MAX_LIMIT), (TEMP_MAX_LIMIT - 0.05 * TEMP_MAX_LIMIT ) , TEMP_MAX_LIMIT};
 
