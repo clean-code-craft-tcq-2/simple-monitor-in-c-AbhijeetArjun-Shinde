@@ -7,6 +7,7 @@ BatteryStatus B1 = {0};
 
 void PrintOnConsole(char message[]){
   printf(" %s!\n", message); 
+  return;
 }
 
 void BreachAlerter( bool status, char parametername[] ){
