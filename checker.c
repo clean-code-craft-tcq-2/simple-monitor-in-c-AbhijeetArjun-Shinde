@@ -11,10 +11,7 @@ void PrintOnConsole(char message[]){
 
 
 bool IsLowerThresholdBreached(float parameter, float lowerlimit){
-  if ( parameter < lowerlimit)
-    return 1;
-  else
-    return 0;
+  return ( parameter < lowerlimit) ;
 }
 
 bool IsUpperThresholdBreached(float parameter,float upperlimit){
