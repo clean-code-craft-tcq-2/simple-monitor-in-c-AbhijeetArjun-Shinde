@@ -2,6 +2,7 @@
 #include <assert.h>
 #include "checker.h"
 
+
 BatteryStatus B1 = {0};
 
 void PrintOnConsole(char message[]){
@@ -9,34 +10,17 @@ void PrintOnConsole(char message[]){
 }
 
 
-int IsLowerThresholdBreached(float parameter, float lowerlimit){
-  if ( parameter < lowerlimit)
-   return 1;
-  else
-   return 0;
-}
+bool IsLowerThresholdBreached(float parameter, float lowerlimit)
+  return ( parameter < lowerlimit);
 
+bool IsUpperThresholdBreached(float parameter,float upperlimit)
+    return(parameter > upperlimit);
 
-int IsUpperThresholdBreached(float parameter,float upperlimit){
-    if(parameter > upperlimit)
-      return 1;
-    else
-      return 0;
-}
+bool IsInWarningLevel(float parameter, float lowerlimit , float upperlimit)
+    return(( parameter >= lowerlimit) && (parameter <= upperlimit ));
 
-int IsInWarningLevel(float parameter, float lowerlimit , float upperlimit){
-    if(( parameter >= lowerlimit) && (parameter <= upperlimit ))
-      return 1;
-    else
-      return 0;
-}
-
-int IsNormal(float parameter, float lowerlimit , float upperlimit){
-    if(( parameter > lowerlimit) && (parameter < upperlimit ))
-      return 1;
-    else
-      return 0;
-}
+bool IsNormal(float parameter, float lowerlimit , float upperlimit)
+    return(( parameter > lowerlimit) && (parameter < upperlimit ));
 
 float ConvertFarenheitToCelcius( float farenheit){
     return ((farenheit - 32) * 5 / 9);
