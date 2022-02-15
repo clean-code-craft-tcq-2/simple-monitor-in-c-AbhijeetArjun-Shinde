@@ -10,9 +10,13 @@ void PrintOnConsole(const char *message){
   return;
 }
 
-void BreachAlerter( bool status,char parametername[] ){
-  if(status)
-    PrintOnConsole(parametername);
+void BreachAlerter( bool status,int messageID){
+  if(status){
+    if( DISPLAY_MESSAGE_LANG_ID ==1)
+    PrintOnConsole(DisplayMessageEn[messageID]);
+    else
+    PrintOnConsole(DisplayMessageDe[messageID]);
+  } 
   return;
 }
 
@@ -52,10 +56,10 @@ bool CheckBatteryTemperature( float Temperature , ParameterRange TempRange){
   B1.TemperatureStatus.HighWarning = IsInWarningLevel(Temperature , TempRange.UpperWarningLimit , TempRange.UpperThreshold );
   B1.TemperatureStatus.HighBreach = IsUpperThresholdBreached(Temperature , TempRange.UpperThreshold );
   if(!B1.TemperatureStatus.normal){
-    BreachAlerter(B1.TemperatureStatus.LowBreach,DisplayMessageEn[0]);
-    BreachAlerter(B1.TemperatureStatus.LowWarning,DisplayMessageEn[1]);
-    BreachAlerter(B1.TemperatureStatus.HighWarning,DisplayMessageEn[2]);
-    BreachAlerter(B1.TemperatureStatus.HighBreach,DisplayMessageEn[3]);
+    BreachAlerter(B1.TemperatureStatus.LowBreach,0);
+    BreachAlerter(B1.TemperatureStatus.LowWarning,1);
+    BreachAlerter(B1.TemperatureStatus.HighWarning,2);
+    BreachAlerter(B1.TemperatureStatus.HighBreach,3);
   }
   return (B1.TemperatureStatus.normal); 
 }
@@ -67,10 +71,10 @@ bool CheckBatterySOC( float SOC , ParameterRange SOCRange){
   B1.SOCStatus.HighWarning = IsInWarningLevel(SOC , SOCRange.UpperWarningLimit , SOCRange.UpperThreshold);
   B1.SOCStatus.HighBreach = IsUpperThresholdBreached(SOC, SOCRange.UpperThreshold);
   if(!B1.SOCStatus.normal){
-    BreachAlerter(B1.SOCStatus.LowBreach,DisplayMessageEn[4]);
-    BreachAlerter(B1.SOCStatus.LowWarning,DisplayMessageEn[5]);
-    BreachAlerter(B1.SOCStatus.HighWarning,DisplayMessageEn[6]); 
-    BreachAlerter(B1.SOCStatus.HighBreach,DisplayMessageEn[7]);
+    BreachAlerter(B1.SOCStatus.LowBreach,4);
+    BreachAlerter(B1.SOCStatus.LowWarning,5);
+    BreachAlerter(B1.SOCStatus.HighWarning,6); 
+    BreachAlerter(B1.SOCStatus.HighBreach,7);
   }
   return (B1.SOCStatus.normal);
 }
@@ -82,10 +86,10 @@ bool CheckBatteryChargeRate( float ChargeRate ,ParameterRange ChargeRateRange) {
   B1.ChargeRateStatus.HighWarning = IsInWarningLevel(ChargeRate , ChargeRateRange.UpperWarningLimit , ChargeRateRange.UpperThreshold);
   B1.ChargeRateStatus.HighBreach = IsUpperThresholdBreached(ChargeRate, ChargeRateRange.UpperThreshold);
   if(!B1.ChargeRateStatus.normal){
-    BreachAlerter(B1.ChargeRateStatus.LowBreach,DisplayMessageEn[8]);
-    BreachAlerter(B1.ChargeRateStatus.LowWarning,DisplayMessageEn[9]);
-    BreachAlerter(B1.ChargeRateStatus.HighWarning,DisplayMessageEn[10]);
-    BreachAlerter(B1.ChargeRateStatus.HighBreach,DisplayMessageEn[11]);
+    BreachAlerter(B1.ChargeRateStatus.LowBreach,8);
+    BreachAlerter(B1.ChargeRateStatus.LowWarning,9);
+    BreachAlerter(B1.ChargeRateStatus.HighWarning,10);
+    BreachAlerter(B1.ChargeRateStatus.HighBreach,11);
    }
   return (B1.ChargeRateStatus.normal);
 }
