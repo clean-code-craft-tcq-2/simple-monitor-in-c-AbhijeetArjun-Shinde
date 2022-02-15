@@ -1,3 +1,5 @@
+#include “stdbool. h”
+
 #define TEMP_MIN_LIMIT 0
 #define TEMP_MAX_LIMIT 45
 
@@ -47,13 +49,13 @@ ParameterRange ChargeRateRange =  {CHARGERATE_MIN_LIMIT , (CHARGERATE_MIN_LIMIT 
 
 void PrintOnConsole( char message[]);
 
-int IsLowerThresholdBreached(float parameter, float lowerlimit);
+bool IsLowerThresholdBreached(float parameter, float lowerlimit);
 
-int IsUpperThresholdBreached(float parameter,float upperlimit);
+bool IsUpperThresholdBreached(float parameter,float upperlimit);
 
-int IsInWarningLevel(float parameter, float lowerlimit , float upperlimit);
+bool IsInWarningLevel(float parameter, float lowerlimit , float upperlimit);
 
-int IsNormal(float parameter, float lowerlimit , float upperlimit);
+bool IsNormal(float parameter, float lowerlimit , float upperlimit);
 
 BatteryStatus CheckBatteryStatus(BatteryTestData testdata);
 
