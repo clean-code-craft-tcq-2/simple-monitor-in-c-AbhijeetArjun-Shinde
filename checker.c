@@ -52,11 +52,11 @@ BatteryTestData CheckAndConvertTemperatureUnit( BatteryTestData testdata ){
 
 BatteryStatus CheckBatteryStatus(BatteryTestData testdata) {
  
-  B1.TemperatureStatus.LowBreach = IsLowerThresholdBreached(ConvertedTemperature, TemperatureRange.LowerThreshold );
-  B1.TemperatureStatus.LowWarning = IsInWarningLevel(ConvertedTemperature ,TemperatureRange.LowerThreshold, TemperatureRange.LowerWarningLimit);
-  B1.TemperatureStatus.normal = IsNormal(ConvertedTemperature ,TemperatureRange.LowerWarningLimit, TemperatureRange.UpperWarningLimit)  ;
-  B1.TemperatureStatus.HighWarning = IsInWarningLevel(ConvertedTemperature , TemperatureRange.UpperWarningLimit , TemperatureRange.UpperThreshold);
-  B1.TemperatureStatus.HighBreach = IsUpperThresholdBreached(ConvertedTemperature , TemperatureRange.UpperThreshold);
+  B1.TemperatureStatus.LowBreach = IsLowerThresholdBreached(testdata.Temperature, TemperatureRange.LowerThreshold );
+  B1.TemperatureStatus.LowWarning = IsInWarningLevel(testdata.Temperature ,TemperatureRange.LowerThreshold, TemperatureRange.LowerWarningLimit);
+  B1.TemperatureStatus.normal = IsNormal(testdata.Temperature ,TemperatureRange.LowerWarningLimit, TemperatureRange.UpperWarningLimit)  ;
+  B1.TemperatureStatus.HighWarning = IsInWarningLevel(testdata.Temperature , TemperatureRange.UpperWarningLimit , TemperatureRange.UpperThreshold);
+  B1.TemperatureStatus.HighBreach = IsUpperThresholdBreached(testdata.Temperature , TemperatureRange.UpperThreshold);
 
   
   B1.SOCStatus.LowBreach = IsLowerThresholdBreached(testdata.StateOfCharge , SOCRange.LowerThreshold );
