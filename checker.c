@@ -13,7 +13,7 @@ void PrintOnConsole(char message[]){
 }
 
 
-bool IsLowerThresholdBreached(float parameter, float lowerlimit , char parameter[]){
+bool IsLowerThresholdBreached(float parameter, float lowerlimit , char parametername[]){
     if( parameter < lowerlimit){
       FuncPtrAlertOutOfRange(strcat(parameter , " Low threshold breach"));
       return 1;
@@ -22,7 +22,7 @@ bool IsLowerThresholdBreached(float parameter, float lowerlimit , char parameter
       return 0;  
 }
 
-bool IsUpperThresholdBreached(float parameter,float upperlimit, char parameter[]){
+bool IsUpperThresholdBreached(float parameter,float upperlimit, char parametername[]){
     if(parameter > upperlimit){
       FuncPtrAlertOutOfRange(strcat(parameter , " High threshold breach"));
       return 1;
@@ -31,7 +31,7 @@ bool IsUpperThresholdBreached(float parameter,float upperlimit, char parameter[]
       return 0;
 }
 
-bool IsInWarningLevel(float parameter, float lowerlimit , float upperlimit, char parameter[]){
+bool IsInWarningLevel(float parameter, float lowerlimit , float upperlimit, char parametername[]){
     if(( parameter >= lowerlimit) && (parameter <= upperlimit )){
       FuncPtrAlertOutOfRange(strcat("Warning : Approaching threshold" , parameter));
       return 1;
