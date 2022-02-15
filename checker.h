@@ -9,7 +9,7 @@
 #define CHARGERATE_MIN_LIMIT 0.0
 #define CHARGERATE_MAX_LIMIT 0.8
 
-#define DISPLAY_MESSAGE_LANG_ID  1
+#define DISPLAY_MESSAGE_LANG_ID  2
 //1 - English
 //2- German
 
@@ -43,12 +43,12 @@ typedef struct{
   ParameterStatus ChargeRateStatus;
 }BatteryStatus;
 
-char DisplayMessageEn[12][50] = { " Temperature Low Threshold Breached " , " Temperature Approaching Low Threshold Breach" , " Temperature Approaching High Threshold Breach" , " Temperature High Threshold Breached " ,
+char DisplayMessageEn[12][100] = { " Temperature Low Threshold Breached " , " Temperature Approaching Low Threshold Breach" , " Temperature Approaching High Threshold Breach" , " Temperature High Threshold Breached " ,
                                 " State of Charge Low Threshold Breached " , " State of Charge Approaching Low Threshold Breach" , " State of Charge Approaching High Threshold Breach" , " State of Charge High Threshold Breached " ,
                                " Charge Rate Low Threshold Breached " , " Charge Rate Approaching Low Threshold Breach" , " Charge Rate Approaching High Threshold Breach" , " Charge Rate High Threshold Breached " };
-char DisplayMessageDe[12][50] ={ " Temperatur unterer Schwellenwert uberschritten " , " Temperatur nahe unterem Schwellenwert uberschritten" , " Temperatur nahe oberem Schwellenwert uberschritten" , " Temperatur oberer Schwellenwert uberschritten" ,
-                                " Zustand der Ladung Niedriger Schwellenwert verletzt " , " Zustand der Ladung Annaherung an niedrigen Schwellenwert verletzt" , " Zustand der Ladung Annaherung an hohen Schwellenwert verletzt" , " Zustand der Ladung hoher Schwellenwert verletzt" ,
-                               " Ladungsrate niedriger Schwellenwert uberschritten" , "Ladungsrate nahert sich niedriger Schwellenwertuberschreitung" , "Ladungsrate nahert sich hoher Schwellenwertuberschreitung" , "Ladungsrate hoher Schwellenwert uberschritten" };
+char DisplayMessageDe[12][100] ={ "Temperatur unterer Schwellenwert uberschritten" , "Temperatur nahe unterem Schwellenwert uberschritten" , "Temperatur nahe oberem Schwellenwert uberschritten" , "Temperatur oberer Schwellenwert uberschritten" ,
+                                "Zustand der Ladung Niedriger Schwellenwert verletzt" , "Zustand der Ladung Annaherung an niedrigen Schwellenwert verletzt" , "Zustand der Ladung Annaherung an hohen Schwellenwert verletzt" , " Zustand der Ladung hoher Schwellenwert verletzt" ,
+                               "Ladungsrate niedriger Schwellenwert uberschritten" , "Ladungsrate nahert sich niedriger Schwellenwertuberschreitung" , "Ladungsrate nahert sich hoher Schwellenwertuberschreitung" , "Ladungsrate hoher Schwellenwert uberschritten" };
 
 ParameterRange TemperatureRange = {TEMP_MIN_LIMIT , (TEMP_MIN_LIMIT + 0.05 * TEMP_MAX_LIMIT), (TEMP_MAX_LIMIT - 0.05 * TEMP_MAX_LIMIT ) , TEMP_MAX_LIMIT};
 
