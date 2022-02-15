@@ -1,5 +1,5 @@
 #include <stdbool.h>
-
+#include <string.h>
 #define TEMP_MIN_LIMIT 0
 #define TEMP_MAX_LIMIT 45
 
