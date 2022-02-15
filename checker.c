@@ -19,7 +19,7 @@ void BreachAlerter( bool status,char parametername[] ){
 
 void WarningAlerter( bool status, char parametername[] ){
    if(status)
-    //PrintOnConsole(strcat(parametername , " is Approaching Threshold Breach"));
+    PrintOnConsole(parametername);
   
   return;
 }
