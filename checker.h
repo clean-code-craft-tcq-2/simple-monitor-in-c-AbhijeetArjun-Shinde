@@ -47,7 +47,7 @@ ParameterRange SOCRange  = {SOC_MIN_LIMIT, (SOC_MIN_LIMIT + 0.05 * SOC_MAX_LIMIT
 
 ParameterRange ChargeRateRange =  {CHARGERATE_MIN_LIMIT , (CHARGERATE_MIN_LIMIT + 0.05 * CHARGERATE_MAX_LIMIT),(CHARGERATE_MAX_LIMIT - 0.05 * CHARGERATE_MAX_LIMIT ), CHARGERATE_MAX_LIMIT};
 
-void PrintOnConsole( char message[]);
+void PrintOnConsole(const char *message);
 
 bool IsLowerThresholdBreached(float parameter, float lowerlimit);
 
@@ -71,6 +71,6 @@ bool CheckBatterySOC( float SOC , ParameterRange SOCRange);
 
 bool CheckBatteryChargeRate( float ChargeRate ,ParameterRange ChargeRateRange);
 
-void BreachAlerter( bool status, char parametername[] );
+void BreachAlerter( bool status, const char *parametername );
 
 void WarningAlerter( bool status, char parametername[] );  
