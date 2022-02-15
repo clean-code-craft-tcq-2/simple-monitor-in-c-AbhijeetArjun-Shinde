@@ -10,7 +10,7 @@ void PrintOnConsole(const char *message){
   return;
 }
 
-void BreachAlerter( bool status,const char *parametername ){
+void BreachAlerter( bool status,char parametername[] ){
   if(status)
     PrintOnConsole(strcat(parametername , " Has Breached Threshold"));
   
