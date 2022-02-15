@@ -9,8 +9,12 @@ void PrintOnConsole(char message[]){
 }
 
 
-int IsLowerThresholdBreached(float parameter, float lowerlimit)
-   return ( parameter < lowerlimit);
+int IsLowerThresholdBreached(float parameter, float lowerlimit){
+  if ( parameter < lowerlimit)
+   return 1;
+  else
+    return 0;
+}
 
 
 int IsUpperThresholdBreached(float parameter,float upperlimit)
