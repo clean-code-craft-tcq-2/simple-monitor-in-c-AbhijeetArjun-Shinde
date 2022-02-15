@@ -49,11 +49,11 @@ ParameterRange ChargeRateRange =  {CHARGERATE_MIN_LIMIT , (CHARGERATE_MIN_LIMIT 
 
 void PrintOnConsole( char message[]);
 
-bool IsLowerThresholdBreached(float parameter, float lowerlimit , char parametername[]);
+bool IsLowerThresholdBreached(float parameter, float lowerlimit);
 
-bool IsUpperThresholdBreached(float parameter,float upperlimit, char parametername[]);
+bool IsUpperThresholdBreached(float parameter,float upperlimit);
 
-bool IsInWarningLevel(float parameter, float lowerlimit , float upperlimit, char parametername[]);
+bool IsInWarningLevel(float parameter, float lowerlimit , float upperlimit);
 
 bool IsNormal(float parameter, float lowerlimit , float upperlimit);
 
