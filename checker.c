@@ -30,6 +30,25 @@ float ConvertFarenheitToCelcius( float farenheit){
     return ((farenheit - 32) * 5 / 9);
 }
 
+void CheckBatteryTemperature( float Temperature , ParameterRange TempRange){
+  if ( IsNormal( Temperature , TemperatureRange.LowerWarningLimit, TemperatureRange.UpperWarningLimit){
+    PrintOnConsole("Battery Temperature OK");
+    return;
+  }
+  else if(IsLowerThresholdBreached(testdata.Temperature, TemperatureRange.LowerThreshold ) ) {
+    PrintOnConsole("Battery Temperature LOW");
+    return;
+  }
+  else if (IsUpperThresholdBreached(testdata.Temperature , TemperatureRange.UpperThreshold)){
+    PrintOnConsole("Battery Temperature HIGH");
+    return;
+  }
+}
+
+
+
+
+
 BatteryTestData CheckAndConvertTemperatureUnit( BatteryTestData testdata ){
   if(testdata.TemperatureUnit == 'f' || testdata.TemperatureUnit == 'F'){
     testdata.Temperature = ConvertFarenheitToCelcius(testdata.Temperature);
