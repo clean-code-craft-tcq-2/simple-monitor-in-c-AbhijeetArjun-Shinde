@@ -9,6 +9,10 @@
 #define CHARGERATE_MIN_LIMIT 0.0
 #define CHARGERATE_MAX_LIMIT 0.8
 
+#define DISPLAY_MESSAGE_LANG_ID  1
+//1 - English
+//2- German
+
 typedef struct{
   float Temperature;
   char TemperatureUnit;
