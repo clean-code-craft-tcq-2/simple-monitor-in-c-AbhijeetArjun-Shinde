@@ -83,7 +83,7 @@ void AssertBatteryIsOk(bool result,int expectedresult) {
 }
  
 int main() {
-  void (*FuncPtrAssertBatteryIsOk)(BatteryStatus , int );
+  void (*FuncPtrAssertBatteryIsOk)(bool , int );
   FuncPtrAssertBatteryIsOk = &AssertBatteryIsOk;
   
   void (*FuncPtrAlertOutOfRange)(char [] );
