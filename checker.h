@@ -26,11 +26,11 @@ typedef struct{
 
 typedef struct{
   // range check result
-  int LowBreach;
-  int LowWarning;
-  int normal;
-  int HighWarning;
-  int HighBreach;
+  bool LowBreach;
+  bool LowWarning;
+  bool normal;
+  bool HighWarning;
+  bool HighBreach;
 }ParameterStatus;
 
 
