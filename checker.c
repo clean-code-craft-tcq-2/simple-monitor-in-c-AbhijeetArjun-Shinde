@@ -38,35 +38,48 @@ BatteryTestData CheckAndConvertTemperatureUnit( BatteryTestData testdata ){
   return (testdata);    
 }
 
-BatteryStatus CheckBatteryStatus(BatteryTestData testdata) {
- 
-  B1.TemperatureStatus.LowBreach = IsLowerThresholdBreached(testdata.Temperature, TemperatureRange.LowerThreshold );
-  B1.TemperatureStatus.LowWarning = IsInWarningLevel(testdata.Temperature ,TemperatureRange.LowerThreshold, TemperatureRange.LowerWarningLimit);
-  B1.TemperatureStatus.normal = IsNormal(testdata.Temperature ,TemperatureRange.LowerWarningLimit, TemperatureRange.UpperWarningLimit)  ;
-  B1.TemperatureStatus.HighWarning = IsInWarningLevel(testdata.Temperature , TemperatureRange.UpperWarningLimit , TemperatureRange.UpperThreshold);
-  B1.TemperatureStatus.HighBreach = IsUpperThresholdBreached(testdata.Temperature , TemperatureRange.UpperThreshold);
-
+bool CheckBatteryTemperature( float Temperature , ParameterRange TempRange){
+  B1.TemperatureStatus.LowBreach = IsLowerThresholdBreached(Temperature, TemperatureRange.LowerThreshold );
+  B1.TemperatureStatus.LowWarning = IsInWarningLevel(Temperature ,TemperatureRange.LowerThreshold, TemperatureRange.LowerWarningLimit);
+  B1.TemperatureStatus.normal = IsNormal(Temperature ,TemperatureRange.LowerWarningLimit, TemperatureRange.UpperWarningLimit)  ;
+  B1.TemperatureStatus.HighWarning = IsInWarningLevel(Temperature , TemperatureRange.UpperWarningLimit , TemperatureRange.UpperThreshold);
+  B1.TemperatureStatus.HighBreach = IsUpperThresholdBreached(Temperature , TemperatureRange.UpperThreshold);
   
-  B1.SOCStatus.LowBreach = IsLowerThresholdBreached(testdata.StateOfCharge , SOCRange.LowerThreshold );
-  B1.SOCStatus.LowWarning = IsInWarningLevel(testdata.StateOfCharge ,SOCRange.LowerThreshold, SOCRange.LowerWarningLimit);
-  B1.SOCStatus.normal = IsNormal(testdata.StateOfCharge ,SOCRange.LowerWarningLimit, SOCRange.UpperWarningLimit)  ;
-  B1.SOCStatus.HighWarning = IsInWarningLevel(testdata.StateOfCharge , SOCRange.UpperWarningLimit , SOCRange.UpperThreshold);
-  B1.SOCStatus.HighBreach = IsUpperThresholdBreached(testdata.StateOfCharge, SOCRange.UpperThreshold);
-
-  
-  B1.ChargeRateStatus.LowBreach = IsLowerThresholdBreached(testdata.ChargeRate , ChargeRateRange.LowerThreshold );
-  B1.ChargeRateStatus.LowWarning = IsInWarningLevel(testdata.ChargeRate ,ChargeRateRange.LowerThreshold, ChargeRateRange.LowerWarningLimit);
-  B1.ChargeRateStatus.normal = IsNormal(testdata.ChargeRate ,ChargeRateRange.LowerWarningLimit, ChargeRateRange.UpperWarningLimit)  ;
-  B1.ChargeRateStatus.HighWarning = IsInWarningLevel(testdata.ChargeRate , ChargeRateRange.UpperWarningLimit , ChargeRateRange.UpperThreshold);
-  B1.ChargeRateStatus.HighBreach = IsUpperThresholdBreached(testdata.ChargeRate, ChargeRateRange.UpperThreshold);
-
-  
-  return B1;
+  return ( !B1.TemperatureStatus.LowBreach && !B1.TemperatureStatus.LowWarning && B1.TemperatureStatus.normal && !B1.TemperatureStatus.HighWarning && !B1.TemperatureStatus.HighBreach); 
 }
 
-void AssertBatteryIsOk(BatteryStatus result,int expectedresult) {
+bool CheckBatterySOC( float SOC , ParameterRange SOCRange){
+  B1.SOCStatus.LowBreach = IsLowerThresholdBreached(SOC , SOCRange.LowerThreshold );
+  B1.SOCStatus.LowWarning = IsInWarningLevel(SOC,SOCRange.LowerThreshold, SOCRange.LowerWarningLimit);
+  B1.SOCStatus.normal = IsNormal(SOC ,SOCRange.LowerWarningLimit, SOCRange.UpperWarningLimit)  ;
+  B1.SOCStatus.HighWarning = IsInWarningLevel(SOC , SOCRange.UpperWarningLimit , SOCRange.UpperThreshold);
+  B1.SOCStatus.HighBreach = IsUpperThresholdBreached(SOC, SOCRange.UpperThreshold);
+  
+  return ( 1B1.SOCStatus.LowBreach && !B1.SOCStatus.LowWarning && B1.SOCStatus.normal && !B1.SOCStatus.HighWarning && !B1.SOCStatus.HighBreach);
+}
 
-  assert( (result.TemperatureStatus.normal && result.SOCStatus.normal && result.ChargeRateStatus.normal)  == expectedresult);
+bool CheckBatteryChargeRate( float ChargeRate ,ParameterRange ChargeRateRange) {
+  B1.ChargeRateStatus.LowBreach = IsLowerThresholdBreached(ChargeRate , ChargeRateRange.LowerThreshold );
+  B1.ChargeRateStatus.LowWarning = IsInWarningLevel(ChargeRate ,ChargeRateRange.LowerThreshold, ChargeRateRange.LowerWarningLimit);
+  B1.ChargeRateStatus.normal = IsNormal(ChargeRate ,ChargeRateRange.LowerWarningLimit, ChargeRateRange.UpperWarningLimit)  ;
+  B1.ChargeRateStatus.HighWarning = IsInWarningLevel(ChargeRate , ChargeRateRange.UpperWarningLimit , ChargeRateRange.UpperThreshold);
+  B1.ChargeRateStatus.HighBreach = IsUpperThresholdBreached(ChargeRate, ChargeRateRange.UpperThreshold);
+  
+  return ( !B1.ChargeRateStatus.LowBreach && !B1.ChargeRateStatus.LowWarning && B1.ChargeRateStatus.normal && !B1.ChargeRateStatus.HighWarning && !B1.ChargeRateStatus.HighBreach);
+}
+
+bool CheckBatteryStatus(BatteryTestData testdata) {
+  bool result=0;
+  
+  result  = CheckBatteryTemperature( testdata.Temperature , TemperatureRange );
+  result &= CheckBatterySOC(testdata.StateOfCharge , SOCRange);
+  result &= CheckBatteryChargeRate(testdata.ChargeRate, ChargeRateRange);
+  
+  return result;
+}
+
+void AssertBatteryIsOk(bool result,int expectedresult) {
+  assert( result == expectedresult);
 }
  
 int main() {
