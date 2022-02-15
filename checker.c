@@ -26,6 +26,9 @@ bool IsNormal(float parameter, float lowerlimit , float upperlimit){
     return (( parameter > lowerlimit) && (parameter < upperlimit ));
 }
 
+float ConvertFarenheitToCelcius(float farenheit){
+  return ((farenheit - 32) * 5 / 9);
+}
 
 BatteryTestData CheckAndConvertTemperatureUnit( BatteryTestData testdata ){
   if(testdata.TemperatureUnit == 'f' || testdata.TemperatureUnit == 'F'){
