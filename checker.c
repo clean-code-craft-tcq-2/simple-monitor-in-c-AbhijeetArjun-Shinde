@@ -9,47 +9,33 @@ void PrintOnConsole(char message[]){
 }
 
 
-int IsLowerThresholdBreached(float parameter, float lowerlimit){
-    if( parameter < lowerlimit )
-      return 1;
-    else
-      return 0;
-    }
+int IsLowerThresholdBreached(float parameter, float lowerlimit)
+    return (( parameter < lowerlimit) ? 1 : 0 );
 
-int IsUpperThresholdBreached(float parameter,float upperlimit){
-    if (parameter > upperlimit) 
-      return 1;
-    else
-      return 0;
-    }
 
-int IsInWarningLevel(float parameter, float lowerlimit , float upperlimit){
-    if( ( parameter >= lowerlimit) && (parameter <= upperlimit ) )
-      return 1;
-    else 
-      return 0;
-    }
+int IsUpperThresholdBreached(float parameter,float upperlimit)
+    return ((parameter > upperlimit) ? 1 : 0 );
 
-int IsNormal(float parameter, float lowerlimit , float upperlimit){
-    if( ( parameter > lowerlimit) && (parameter < upperlimit ) )
-      return 1;
-    else 
-      return 0;
-    }
+int IsInWarningLevel(float parameter, float lowerlimit , float upperlimit)
+    return ((( parameter >= lowerlimit) && (parameter <= upperlimit )) ? 1 : 0)
+
+int IsNormal(float parameter, float lowerlimit , float upperlimit)
+    return ((( parameter > lowerlimit) && (parameter < upperlimit )) ? 1 : 0 )
 
 float ConvertFarenheitToCelcius( float farenheit){
     return ((farenheit - 32) * 5 / 9);
 }
 
-BatteryStatus CheckBatteryStatus(BatteryTestData testdata) {
-  
-  float ConvertedTemperature = 0;
-  if(testdata.TemperatureUnit == 'c' || testdata.TemperatureUnit == 'C')
-    ConvertedTemperature = testdata.Temperature;
-  else
-    ConvertedTemperature = ConvertFarenheitToCelcius(testdata.Temperature);
+BatteryTestData CheckAndConvertTemperatureUnit( BatteryTestData testdata ){
+  if(testdata.TemperatureUnit == 'f' || testdata.TemperatureUnit == 'F'){
+    testdata.Temperature = ConvertFarenheitToCelcius(testdata.Temperature);
+    testdata.TemperatureUnit = 'C';
+  }  
+  return (testdata);    
+}
 
-  
+BatteryStatus CheckBatteryStatus(BatteryTestData testdata) {
+ 
   B1.TemperatureStatus.LowBreach = IsLowerThresholdBreached(ConvertedTemperature, TemperatureRange.LowerThreshold );
   B1.TemperatureStatus.LowWarning = IsInWarningLevel(ConvertedTemperature ,TemperatureRange.LowerThreshold, TemperatureRange.LowerWarningLimit);
   B1.TemperatureStatus.normal = IsNormal(ConvertedTemperature ,TemperatureRange.LowerWarningLimit, TemperatureRange.UpperWarningLimit)  ;
@@ -93,9 +79,9 @@ int main() {
     { 68, 'F', 10, 2 },
     { 35, 'C', 30, -4}
   };
-  FuncPtrAssertBatteryIsOk(CheckBatteryStatus(testdata[0]),1);
-  FuncPtrAssertBatteryIsOk(CheckBatteryStatus(testdata[1]),0);
-  FuncPtrAssertBatteryIsOk(CheckBatteryStatus(testdata[2]),0);
-  FuncPtrAssertBatteryIsOk(CheckBatteryStatus(testdata[3]),0);
-  FuncPtrAssertBatteryIsOk(CheckBatteryStatus(testdata[4]),0);
+  FuncPtrAssertBatteryIsOk(CheckBatteryStatus(CheckAndConvertTemperatureUnit(testdata[0])),1);
+  FuncPtrAssertBatteryIsOk(CheckBatteryStatus(CheckAndConvertTemperatureUnit(testdata[1])),0);
+  FuncPtrAssertBatteryIsOk(CheckBatteryStatus(CheckAndConvertTemperatureUnit(testdata[2])),0);
+  FuncPtrAssertBatteryIsOk(CheckBatteryStatus(CheckAndConvertTemperatureUnit(testdata[3])),0);
+  FuncPtrAssertBatteryIsOk(CheckBatteryStatus(CheckAndConvertTemperatureUnit(testdata[4])),0);
 }
