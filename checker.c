@@ -12,10 +12,10 @@ void PrintOnConsole(const char *message){
 
 void BreachAlerter( bool status,int messageID){
   if(status){
-    if( DISPLAY_MESSAGE_LANG_ID ==1)
-    PrintOnConsole(DisplayMessageEn[messageID]);
-    else if( DISPLAY_MESSAGE_LANG_ID ==2)
+    if( DISPLAY_MESSAGE_LANG_ID ==2)
     PrintOnConsole(DisplayMessageDe[messageID]);
+    else
+    PrintOnConsole(DisplayMessageEn[messageID]);
   } 
   return;
 }
