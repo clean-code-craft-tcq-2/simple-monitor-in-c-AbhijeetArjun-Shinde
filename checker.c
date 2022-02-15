@@ -60,10 +60,10 @@ bool CheckBatteryTemperature( float Temperature , ParameterRange TempRange){
   B1.TemperatureStatus.HighWarning = IsInWarningLevel(Temperature , TempRange.UpperWarningLimit , TempRange.UpperThreshold );
   B1.TemperatureStatus.HighBreach = IsUpperThresholdBreached(Temperature , TempRange.UpperThreshold );
   if(!B1.TemperatureStatus.normal){
-    BreachAlerter(B1.TemperatureStatus.LowBreach,DisplayMessage[0]);
-    WarningAlerter(B1.TemperatureStatus.LowWarning,DisplayMessage[1]);
-    WarningAlerter(B1.TemperatureStatus.HighWarning,DisplayMessage[2]);
-    BreachAlerter(B1.TemperatureStatus.HighBreach,DisplayMessage[3]);
+    BreachAlerter(B1.TemperatureStatus.LowBreach,( strcmp( DISPLAY_MESSAGE_LANG ,"English")) ? DisplayMessageEn[0] : DisplayMessageDe[0] );
+    WarningAlerter(B1.TemperatureStatus.LowWarning,( strcmp( DISPLAY_MESSAGE_LANG ,"English")) ? DisplayMessageEn[1] : DisplayMessageDe[1]  );
+    WarningAlerter(B1.TemperatureStatus.HighWarning,( strcmp( DISPLAY_MESSAGE_LANG ,"English")) ? DisplayMessageEn[2] : DisplayMessageDe[2] );
+    BreachAlerter(B1.TemperatureStatus.HighBreach,( strcmp( DISPLAY_MESSAGE_LANG ,"English")) ? DisplayMessageEn[3] : DisplayMessageDe[3] );
   }
   return (B1.TemperatureStatus.normal); 
 }
@@ -75,10 +75,10 @@ bool CheckBatterySOC( float SOC , ParameterRange SOCRange){
   B1.SOCStatus.HighWarning = IsInWarningLevel(SOC , SOCRange.UpperWarningLimit , SOCRange.UpperThreshold);
   B1.SOCStatus.HighBreach = IsUpperThresholdBreached(SOC, SOCRange.UpperThreshold);
   if(!B1.SOCStatus.normal){
-    BreachAlerter(B1.SOCStatus.LowBreach,DisplayMessage[4]);
-    WarningAlerter(B1.SOCStatus.LowWarning,DisplayMessage[5]);
-    WarningAlerter(B1.SOCStatus.HighWarning,DisplayMessage[6]); 
-    BreachAlerter(B1.SOCStatus.HighBreach,DisplayMessage[7]);
+    BreachAlerter(B1.SOCStatus.LowBreach,( strcmp( DISPLAY_MESSAGE_LANG ,"English")) ? DisplayMessageEn[4] : DisplayMessageDe[4]  );
+    WarningAlerter(B1.SOCStatus.LowWarning,( strcmp( DISPLAY_MESSAGE_LANG ,"English")) ? DisplayMessageEn[5] : DisplayMessageDe[5]  );
+    WarningAlerter(B1.SOCStatus.HighWarning,( strcmp( DISPLAY_MESSAGE_LANG ,"English")) ? DisplayMessageEn[6] : DisplayMessageDe[6]  ); 
+    BreachAlerter(B1.SOCStatus.HighBreach,( strcmp( DISPLAY_MESSAGE_LANG ,"English")) ? DisplayMessageEn[7] : DisplayMessageDe[7] );
   }
   return (B1.SOCStatus.normal);
 }
@@ -90,10 +90,10 @@ bool CheckBatteryChargeRate( float ChargeRate ,ParameterRange ChargeRateRange) {
   B1.ChargeRateStatus.HighWarning = IsInWarningLevel(ChargeRate , ChargeRateRange.UpperWarningLimit , ChargeRateRange.UpperThreshold);
   B1.ChargeRateStatus.HighBreach = IsUpperThresholdBreached(ChargeRate, ChargeRateRange.UpperThreshold);
   if(!B1.ChargeRateStatus.normal){
-    BreachAlerter(B1.ChargeRateStatus.LowBreach,DisplayMessage[8]);
-    WarningAlerter(B1.ChargeRateStatus.LowWarning,DisplayMessage[9]);
-    WarningAlerter(B1.ChargeRateStatus.HighWarning,DisplayMessage[10]);
-    BreachAlerter(B1.ChargeRateStatus.HighBreach,DisplayMessage[11]);
+    BreachAlerter(B1.ChargeRateStatus.LowBreach,( strcmp( DISPLAY_MESSAGE_LANG ,"English")) ? DisplayMessageEn[8] : DisplayMessageDe[8]  );
+    WarningAlerter(B1.ChargeRateStatus.LowWarning,( strcmp( DISPLAY_MESSAGE_LANG ,"English")) ? DisplayMessageEn[9] : DisplayMessageDe[9] );
+    WarningAlerter(B1.ChargeRateStatus.HighWarning,(strcmp( DISPLAY_MESSAGE_LANG ,"English")) ? DisplayMessageEn[10] : DisplayMessageDe[10] );
+    BreachAlerter(B1.ChargeRateStatus.HighBreach,(strcmp( DISPLAY_MESSAGE_LANG ,"English")) ? DisplayMessageEn[11] : DisplayMessageDe[11]);
    }
   return (B1.ChargeRateStatus.normal);
 }
