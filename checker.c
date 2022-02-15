@@ -45,7 +45,7 @@ bool CheckBatteryTemperature( float Temperature , ParameterRange TempRange){
   B1.TemperatureStatus.HighWarning = IsInWarningLevel(Temperature , TempRange.UpperWarningLimit , TempRange.UpperThreshold);
   B1.TemperatureStatus.HighBreach = IsUpperThresholdBreached(Temperature , TempRange.UpperThreshold);
   
-  //return ( !B1.TemperatureStatus.LowBreach && !B1.TemperatureStatus.LowWarning && B1.TemperatureStatus.normal && !B1.TemperatureStatus.HighWarning && !B1.TemperatureStatus.HighBreach); 
+  return (B1.TemperatureStatus.normal); 
 }
 
 bool CheckBatterySOC( float SOC , ParameterRange SOCRange){
@@ -55,7 +55,7 @@ bool CheckBatterySOC( float SOC , ParameterRange SOCRange){
   B1.SOCStatus.HighWarning = IsInWarningLevel(SOC , SOCRange.UpperWarningLimit , SOCRange.UpperThreshold);
   B1.SOCStatus.HighBreach = IsUpperThresholdBreached(SOC, SOCRange.UpperThreshold);
   
-  //return ( 1B1.SOCStatus.LowBreach && !B1.SOCStatus.LowWarning && B1.SOCStatus.normal && !B1.SOCStatus.HighWarning && !B1.SOCStatus.HighBreach);
+  return (B1.SOCStatus.normal);
 }
 
 bool CheckBatteryChargeRate( float ChargeRate ,ParameterRange ChargeRateRange) {
@@ -65,7 +65,7 @@ bool CheckBatteryChargeRate( float ChargeRate ,ParameterRange ChargeRateRange) {
   B1.ChargeRateStatus.HighWarning = IsInWarningLevel(ChargeRate , ChargeRateRange.UpperWarningLimit , ChargeRateRange.UpperThreshold);
   B1.ChargeRateStatus.HighBreach = IsUpperThresholdBreached(ChargeRate, ChargeRateRange.UpperThreshold);
   
-  //return ( !B1.ChargeRateStatus.LowBreach && !B1.ChargeRateStatus.LowWarning && B1.ChargeRateStatus.normal && !B1.ChargeRateStatus.HighWarning && !B1.ChargeRateStatus.HighBreach);
+  return (B1.ChargeRateStatus.normal);
 }
 
 bool CheckBatteryStatus(BatteryTestData testdata) {
