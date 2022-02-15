@@ -11,28 +11,19 @@ void PrintOnConsole(char message[]){
 
 
 bool IsLowerThresholdBreached(float parameter, float lowerlimit){
-  return ( parameter < lowerlimit) ;
+    return ( parameter < lowerlimit) ;
 }
 
 bool IsUpperThresholdBreached(float parameter,float upperlimit){
-    if(parameter > upperlimit)
-      return 1;
-    else
-      return 0;
+    return (parameter > upperlimit);
 }
 
 bool IsInWarningLevel(float parameter, float lowerlimit , float upperlimit){
-    if(( parameter >= lowerlimit) && (parameter <= upperlimit ))
-        return 1;
-    else
-      return 0;
+    return (( parameter >= lowerlimit) && (parameter <= upperlimit ));
 }
 
 bool IsNormal(float parameter, float lowerlimit , float upperlimit){
-    if(( parameter > lowerlimit) && (parameter < upperlimit ))
-        return 1;
-    else
-      return 0;
+    return (( parameter > lowerlimit) && (parameter < upperlimit ));
 }
 
 float ConvertFarenheitToCelcius( float farenheit){
