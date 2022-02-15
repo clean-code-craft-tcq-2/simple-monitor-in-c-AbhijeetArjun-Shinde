@@ -13,14 +13,6 @@ void PrintOnConsole(const char *message){
 void BreachAlerter( bool status,char parametername[] ){
   if(status)
     PrintOnConsole(parametername);
-  
-  return;
-}
-
-void WarningAlerter( bool status, char parametername[] ){
-   if(status)
-    PrintOnConsole(parametername);
-  
   return;
 }
 
@@ -61,8 +53,8 @@ bool CheckBatteryTemperature( float Temperature , ParameterRange TempRange){
   B1.TemperatureStatus.HighBreach = IsUpperThresholdBreached(Temperature , TempRange.UpperThreshold );
   if(!B1.TemperatureStatus.normal){
     BreachAlerter(B1.TemperatureStatus.LowBreach,DisplayMessageEn[0]);
-    WarningAlerter(B1.TemperatureStatus.LowWarning,DisplayMessageEn[1]);
-    WarningAlerter(B1.TemperatureStatus.HighWarning,DisplayMessageEn[2]);
+    BreachAlerter(B1.TemperatureStatus.LowWarning,DisplayMessageEn[1]);
+    BreachAlerter(B1.TemperatureStatus.HighWarning,DisplayMessageEn[2]);
     BreachAlerter(B1.TemperatureStatus.HighBreach,DisplayMessageEn[3]);
   }
   return (B1.TemperatureStatus.normal); 
@@ -76,8 +68,8 @@ bool CheckBatterySOC( float SOC , ParameterRange SOCRange){
   B1.SOCStatus.HighBreach = IsUpperThresholdBreached(SOC, SOCRange.UpperThreshold);
   if(!B1.SOCStatus.normal){
     BreachAlerter(B1.SOCStatus.LowBreach,DisplayMessageEn[4]);
-    WarningAlerter(B1.SOCStatus.LowWarning,DisplayMessageEn[5]);
-    WarningAlerter(B1.SOCStatus.HighWarning,DisplayMessageEn[6]); 
+    BreachAlerter(B1.SOCStatus.LowWarning,DisplayMessageEn[5]);
+    BreachAlerter(B1.SOCStatus.HighWarning,DisplayMessageEn[6]); 
     BreachAlerter(B1.SOCStatus.HighBreach,DisplayMessageEn[7]);
   }
   return (B1.SOCStatus.normal);
@@ -91,8 +83,8 @@ bool CheckBatteryChargeRate( float ChargeRate ,ParameterRange ChargeRateRange) {
   B1.ChargeRateStatus.HighBreach = IsUpperThresholdBreached(ChargeRate, ChargeRateRange.UpperThreshold);
   if(!B1.ChargeRateStatus.normal){
     BreachAlerter(B1.ChargeRateStatus.LowBreach,DisplayMessageEn[8]);
-    WarningAlerter(B1.ChargeRateStatus.LowWarning,DisplayMessageEn[9]);
-    WarningAlerter(B1.ChargeRateStatus.HighWarning,DisplayMessageEn[10]);
+    BreachAlerter(B1.ChargeRateStatus.LowWarning,DisplayMessageEn[9]);
+    BreachAlerter(B1.ChargeRateStatus.HighWarning,DisplayMessageEn[10]);
     BreachAlerter(B1.ChargeRateStatus.HighBreach,DisplayMessageEn[11]);
    }
   return (B1.ChargeRateStatus.normal);
