@@ -70,3 +70,7 @@ bool CheckBatteryTemperature( float Temperature , ParameterRange TempRange);
 bool CheckBatterySOC( float SOC , ParameterRange SOCRange);
 
 bool CheckBatteryChargeRate( float ChargeRate ,ParameterRange ChargeRateRange);
+
+void BreachAlerter( bool status, char parametername[] );
+
+void WarningAlerter( bool status, char parametername[] );  
