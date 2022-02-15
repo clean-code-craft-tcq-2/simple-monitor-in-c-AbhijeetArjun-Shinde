@@ -4,26 +4,48 @@
 
 
 BatteryStatus B1 = {0};
+  
+void (*FuncPtrAlertOutOfRange)(char [] );
+FuncPtrAlertOutOfRange = &PrintOnConsole;
 
 void PrintOnConsole(char message[]){
   printf(" %s!\n", message); 
 }
 
 
-bool IsLowerThresholdBreached(float parameter, float lowerlimit){
-    return ( parameter < lowerlimit) ;
+bool IsLowerThresholdBreached(float parameter, float lowerlimit , char parameter[]){
+    if( parameter < lowerlimit){
+      FuncPtrAlertOutOfRange(strcat(parameter , " Low threshold breach"));
+      return 1;
+    }
+    else
+      return 0;  
 }
 
 bool IsUpperThresholdBreached(float parameter,float upperlimit){
-    return (parameter > upperlimit);
+    if(parameter > upperlimit){
+      FuncPtrAlertOutOfRange(strcat(parameter , " High threshold breach"));
+      return 1;
+    }
+    else
+      return 0;
 }
 
 bool IsInWarningLevel(float parameter, float lowerlimit , float upperlimit){
-    return (( parameter >= lowerlimit) && (parameter <= upperlimit ));
+    if(( parameter >= lowerlimit) && (parameter <= upperlimit )){
+      FuncPtrAlertOutOfRange(strcat("Warning : Approaching threshold" , parameter));
+      return 1;
+    }
+  else
+    return 0;
 }
 
 bool IsNormal(float parameter, float lowerlimit , float upperlimit){
-    return (( parameter > lowerlimit) && (parameter < upperlimit ));
+    if(( parameter > lowerlimit) && (parameter < upperlimit )){
+      return 1;
+    }
+    else
+      return 0;
 }
 
 float ConvertFarenheitToCelcius(float farenheit){
@@ -86,9 +108,6 @@ int main() {
   void (*FuncPtrAssertBatteryIsOk)(bool , int );
   FuncPtrAssertBatteryIsOk = &AssertBatteryIsOk;
   
-  void (*FuncPtrAlertOutOfRange)(char [] );
-  FuncPtrAlertOutOfRange = &PrintOnConsole;
-  
   BatteryTestData testdata[5] = { 
     { 20, 'c' ,70, 0.7},
     { 50, 'C', 85, 0},
@@ -96,6 +115,7 @@ int main() {
     { 68, 'F', 10, 2 },
     { 35, 'C', 30, -4}
   };
+  
   FuncPtrAssertBatteryIsOk(CheckBatteryStatus(CheckAndConvertTemperatureUnit(testdata[0])),1);
   FuncPtrAssertBatteryIsOk(CheckBatteryStatus(CheckAndConvertTemperatureUnit(testdata[1])),0);
   FuncPtrAssertBatteryIsOk(CheckBatteryStatus(CheckAndConvertTemperatureUnit(testdata[2])),0);
