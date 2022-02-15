@@ -57,10 +57,16 @@ bool IsInWarningLevel(float parameter, float lowerlimit , float upperlimit);
 
 bool IsNormal(float parameter, float lowerlimit , float upperlimit);
 
-BatteryStatus CheckBatteryStatus(BatteryTestData testdata);
+bool CheckBatteryStatus(BatteryTestData testdata);
 
-void AssertBatteryIsOk(BatteryStatus result,int expectedresult);
+void AssertBatteryIsOk(bool result,int expectedresult);
 
 float ConvertFarenheitToCelcius( float farenheit);
 
 BatteryTestData CheckAndConvertTemperatureUnit( BatteryTestData testdata );
+
+bool CheckBatteryTemperature( float Temperature , ParameterRange TempRange);
+
+bool CheckBatterySOC( float SOC , ParameterRange SOCRange);
+
+bool CheckBatteryChargeRate( float ChargeRate ,ParameterRange ChargeRateRange);
