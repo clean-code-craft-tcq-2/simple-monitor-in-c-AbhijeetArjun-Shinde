@@ -12,11 +12,15 @@ void PrintOnConsole(char message[]){
 void BreachAlerter( bool status, char parametername[] ){
   if(status)
     PrintOnConsole(strcat(parametername , " Has Breached Threshold"));
+  
+  return;
 }
 
 void WarningAlerter( bool status, char parametername[] ){
    if(status)
     PrintOnConsole(strcat(parametername , " is Approaching Threshold Breach"));
+  
+  return;
 }
 
 
