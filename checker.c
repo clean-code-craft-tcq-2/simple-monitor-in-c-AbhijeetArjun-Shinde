@@ -18,7 +18,7 @@ bool IsUpperThresholdBreached(float parameter,float upperlimit){
     return(parameter > upperlimit);
 }
 
-bool IsInWarningLevel(float parameter, float lowerlimit , float upperlimit, char parametername[]){
+bool IsInWarningLevel(float parameter, float lowerlimit , float upperlimit){
     return(( parameter >= lowerlimit) && (parameter <= upperlimit ));
 }
 
