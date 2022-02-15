@@ -60,3 +60,5 @@ BatteryStatus CheckBatteryStatus(BatteryTestData testdata);
 void AssertBatteryIsOk(BatteryStatus result,int expectedresult);
 
 float ConvertFarenheitToCelcius( float farenheit);
+
+BatteryTestData CheckAndConvertTemperatureUnit( BatteryTestData testdata );
