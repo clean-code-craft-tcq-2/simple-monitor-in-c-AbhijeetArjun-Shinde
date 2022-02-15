@@ -10,17 +10,17 @@ void PrintOnConsole(char message[]){
 
 
 int IsLowerThresholdBreached(float parameter, float lowerlimit)
-    return (( parameter < lowerlimit) ? 1 : 0 );
+    return ( parameter < lowerlimit) ? 1 : 0 ;
 
 
 int IsUpperThresholdBreached(float parameter,float upperlimit)
-    return ((parameter > upperlimit) ? 1 : 0 );
+    return (parameter > upperlimit) ? 1 : 0 ;
 
 int IsInWarningLevel(float parameter, float lowerlimit , float upperlimit)
-    return ((( parameter >= lowerlimit) && (parameter <= upperlimit )) ? 1 : 0)
+    return (( parameter >= lowerlimit) && (parameter <= upperlimit )) ? 1 : 0;
 
 int IsNormal(float parameter, float lowerlimit , float upperlimit)
-    return ((( parameter > lowerlimit) && (parameter < upperlimit )) ? 1 : 0 )
+    return (( parameter > lowerlimit) && (parameter < upperlimit )) ? 1 : 0 ;
 
 float ConvertFarenheitToCelcius( float farenheit){
     return ((farenheit - 32) * 5 / 9);
