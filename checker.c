@@ -5,14 +5,14 @@
 
 BatteryStatus B1 = {0};
 
-void PrintOnConsole(char message[]){
+void PrintOnConsole(const char *message){
   printf(" %s!\n", message); 
   return;
 }
 
-void BreachAlerter( bool status, char parametername[] ){
+void BreachAlerter( bool status,const char *parametername ){
   if(status)
-    //PrintOnConsole(strcat(parametername , " Has Breached Threshold"));
+    PrintOnConsole(strcat(parametername , " Has Breached Threshold"));
   
   return;
 }
