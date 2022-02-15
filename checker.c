@@ -10,17 +10,33 @@ void PrintOnConsole(char message[]){
 }
 
 
-bool IsLowerThresholdBreached(float parameter, float lowerlimit)
-  return ( parameter < lowerlimit);
+bool IsLowerThresholdBreached(float parameter, float lowerlimit){
+  if ( parameter < lowerlimit)
+    return 1;
+  else
+    return 0;
+}
 
-bool IsUpperThresholdBreached(float parameter,float upperlimit)
-    return(parameter > upperlimit);
+bool IsUpperThresholdBreached(float parameter,float upperlimit){
+    if(parameter > upperlimit)
+      return 1;
+    else
+      return 0;
+}
 
-bool IsInWarningLevel(float parameter, float lowerlimit , float upperlimit)
-    return(( parameter >= lowerlimit) && (parameter <= upperlimit ));
+bool IsInWarningLevel(float parameter, float lowerlimit , float upperlimit){
+    if(( parameter >= lowerlimit) && (parameter <= upperlimit ))
+        return 1;
+    else
+      return 0;
+}
 
-bool IsNormal(float parameter, float lowerlimit , float upperlimit)
-    return(( parameter > lowerlimit) && (parameter < upperlimit ));
+bool IsNormal(float parameter, float lowerlimit , float upperlimit){
+    if(( parameter > lowerlimit) && (parameter < upperlimit ))
+        return 1;
+    else
+      return 0;
+}
 
 float ConvertFarenheitToCelcius( float farenheit){
     return ((farenheit - 32) * 5 / 9);
