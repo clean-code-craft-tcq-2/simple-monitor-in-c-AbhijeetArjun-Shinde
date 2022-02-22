@@ -112,12 +112,17 @@ int main() {
   void (*FuncPtrAssertBatteryIsOk)(bool , int );
   FuncPtrAssertBatteryIsOk = &AssertBatteryIsOk;
   
-  BatteryTestData testdata[5] = { 
+  BatteryTestData testdata[10] = { 
     { 20, 'c' ,70, 0.7},
     { 50, 'C', 85, 0},
     { 23, 'f', 50, 0.5},
     { 68, 'F', 10, 2 },
-    { 35, 'C', 30, -4}
+    { 35, 'C', 30, -4},
+    { 43, 'c' ,22, 0.76},
+    { 44, 'C', 23, 0.78},
+    { 109.5, 'f', 50, 0.79},
+    {110, 'F', 76, 2 },
+    { 35, 'C', 78, -4}
   };
   
   FuncPtrAssertBatteryIsOk(CheckBatteryStatus(CheckAndConvertTemperatureUnit(testdata[0])),1);
@@ -125,4 +130,9 @@ int main() {
   FuncPtrAssertBatteryIsOk(CheckBatteryStatus(CheckAndConvertTemperatureUnit(testdata[2])),0);
   FuncPtrAssertBatteryIsOk(CheckBatteryStatus(CheckAndConvertTemperatureUnit(testdata[3])),0);
   FuncPtrAssertBatteryIsOk(CheckBatteryStatus(CheckAndConvertTemperatureUnit(testdata[4])),0);
+  FuncPtrAssertBatteryIsOk(CheckBatteryStatus(CheckAndConvertTemperatureUnit(testdata[5])),1);
+  FuncPtrAssertBatteryIsOk(CheckBatteryStatus(CheckAndConvertTemperatureUnit(testdata[6])),0);
+  FuncPtrAssertBatteryIsOk(CheckBatteryStatus(CheckAndConvertTemperatureUnit(testdata[7])),0);
+  FuncPtrAssertBatteryIsOk(CheckBatteryStatus(CheckAndConvertTemperatureUnit(testdata[8])),0);
+  FuncPtrAssertBatteryIsOk(CheckBatteryStatus(CheckAndConvertTemperatureUnit(testdata[9])),0);
 }
